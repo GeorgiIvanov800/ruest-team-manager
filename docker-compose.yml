@@ -1,0 +1,70 @@
+services:
+  postgres:
+    container_name: postgres-rtm
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rust_team_manager
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - rtm-net
+
+  keycloak:
+    container_name: keycloak-rtm
+    image: quay.io/keycloak/keycloak:26.2.1
+    command:
+      - start-dev
+    environment:
+      PROXY_ADDRESS_FORWARDING: "true"
+      KC_HTTP_RELATIVE_PATH: /auth
+      KC_HOSTNAME: localhost
+      KC_HOSTNAME_PORT: "9090"
+      KC_HOSTNAME_STRICT: "false"
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: rust_team_manager
+      KC_DB_USERNAME: username
+      KC_DB_PASSWORD: password
+    ports:
+      - "9090:8080"
+    volumes:
+      - keycloak_data:/opt/keycloak/data
+    depends_on:
+      - postgres
+    networks:
+      - rtm-net
+
+  app:
+    container_name: rtm-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rust_team_manager
+      SPRING_DATASOURCE_USERNAME: username
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://host.docker.internal:9090/auth/realms/ruest-team-manager/protocol/openid-connect/certs
+      SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_AUDIENCE: rtm
+      SERVER_PORT: 8088
+    ports:
+      - "8088:8088"
+    depends_on:
+      - postgres
+      - keycloak
+    networks:
+      - rtm-net
+
+volumes:
+  postgres_data:
+  keycloak_data:
+
+networks:
+  rtm-net:
+    driver: bridge

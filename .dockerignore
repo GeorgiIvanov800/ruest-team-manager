@@ -1,0 +1,13 @@
+# ---- .dockerignore (project-root/.dockerignore) ----
+# Ignore build artifacts and local configs
+ ruest-team-manager-be/target
+ ruest-team-manager-be/.git
+ ruest-team-manager-fe/node_modules
+ ruest-team-manager-fe/dist
+*.iml
+**/*.js
+**/*.d.ts
+!**/*.vue
+!**/*.ts
+ruest-team-manager-fe/src/**/*.js
+ruest-team-manager-fe/src/**/*.d.ts
