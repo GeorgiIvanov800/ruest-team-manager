@@ -1,0 +1,4 @@
+INSERT INTO warehouses (id, name) VALUES
+    (1, 'L1'),
+    (2, 'L3'),
+    (3, 'G')

@@ -18,7 +18,7 @@
   const error = ref<string | null>(null);
   const loadingStore = useLoadingStore();
   const sleeveNumber = ref<number>(Number(route.query.sleeveNumber) || 0);
-  const dateTime = format(new Date().toLocaleDateString(), 'dd/MM/yyyy');
+  const dateTime = format(new Date(), 'dd/MM/yyyy');
   let manufactureDate = '';
   const keycloak = useKeycloak() as unknown as VueKeycloakInstance
 
