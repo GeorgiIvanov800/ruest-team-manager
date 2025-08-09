@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/ruest_team_manager
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://host.docker.internal:9090/auth/realms/ruest-team-manager/protocol/openid-connect/certs
+          audiences: rtm
+server:
+  port: 8088
+springdoc:
+  default-produces-media-type: application/json
