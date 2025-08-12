@@ -16,7 +16,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://host.docker.internal:9090/auth/realms/ruest-team-manager/protocol/openid-connect/certs
+          jwk-set-uri: http://localhost:9090/auth/realms/ruest-team-manager/protocol/openid-connect/certs
           audiences: rtm
 server:
   port: 8088

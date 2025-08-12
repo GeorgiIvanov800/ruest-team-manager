@@ -62,11 +62,11 @@ public class SleeveServiceImpl implements SleeveService {
 
     @Override
     public SleeveResponse updateSleeve(Long id, Map<String, Object> updates) {
-        int sleeveNumber = (int) updates.get("sleeveNumber");
-
-        if (sleeveNumberExists(sleeveNumber)) {
-            throw new DuplicateSleeveNumberException(sleeveNumber);
-        }
+//        int sleeveNumber = (int) updates.get("sleeveNumber");
+        // TODO work with the ID of the Sleeve to chek the Sleeve number because of an update it should get updated
+//        if (sleeveNumberExists(sleeveNumber)) {
+//            throw new DuplicateSleeveNumberException(sleeveNumber);
+//        }
 
         Sleeve sleeve = sleeveRepository.findById(id).orElseThrow( () -> new NotFoundException(Math.toIntExact(id)));
 

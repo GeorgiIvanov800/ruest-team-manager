@@ -37,6 +37,7 @@
   }
 
   async function onUpdate (payload: Partial<SaveSleeveRequest>): Promise<void> {
+
     loadingStore.startLoading();
     const sleeveId = sleeveToEdit.value?.id;
     error.value = null;
@@ -65,6 +66,7 @@
       loadingStore.stopLoading();
     }
   }
+
 </script>
 
 <template>
