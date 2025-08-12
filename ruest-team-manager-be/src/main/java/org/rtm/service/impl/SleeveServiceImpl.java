@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 
+
 @Service
 @AllArgsConstructor
 public class SleeveServiceImpl implements SleeveService {
@@ -61,12 +62,12 @@ public class SleeveServiceImpl implements SleeveService {
     }
 
     @Override
+    @Transactional
     public SleeveResponse updateSleeve(Long id, Map<String, Object> updates) {
-//        int sleeveNumber = (int) updates.get("sleeveNumber");
-        // TODO work with the ID of the Sleeve to chek the Sleeve number because of an update it should get updated
-//        if (sleeveNumberExists(sleeveNumber)) {
-//            throw new DuplicateSleeveNumberException(sleeveNumber);
-//        }
+        Integer sleeveNumber = (Integer) updates.get("sleeveNumber");
+        if (sleeveNumber != null && sleeveNumberExists(sleeveNumber)) {
+            throw new DuplicateSleeveNumberException(sleeveNumber);
+        }
 
         Sleeve sleeve = sleeveRepository.findById(id).orElseThrow( () -> new NotFoundException(Math.toIntExact(id)));
 
@@ -82,7 +83,7 @@ public class SleeveServiceImpl implements SleeveService {
         try {
             objectMapper.updateValue(sleeve, updates);
         } catch (JsonMappingException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException("No valid fields updates: " + e.getOriginalMessage(), e);
         }
 
         sleeveRepository.save(sleeve);
