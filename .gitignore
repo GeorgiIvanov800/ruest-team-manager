@@ -1,0 +1,21 @@
+# === IDE ===
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# === OS-specific ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+logs/
+*.log
+*.out
+*.pid
+
+# === Temp / cache ===
+*.tmp
+*.bak
+*.swp

@@ -11,7 +11,7 @@
 
   const router = useRouter();
   const emit = defineEmits<{
-    (e: 'submit', payload: SaveSleeveRequest): void
+    (e: 'submit', payload: SaveSleeveRequest | Partial<SaveSleeveRequest>): void
   }>();
 
   const props = withDefaults(defineProps<{
@@ -99,32 +99,28 @@
     },
   });
 
-  // const onSubmit = handleSubmit(formValues => {
-  //   if (props.initialData && formInitialValues.value) {
-  //     const changedFields = getChangedFields(formValues, formInitialValues.value);
 
-  //     emit('update', changedFields);
-  //   } else {
-  //     const payload: SaveSleeveRequest = {
-  //       ...formValues,
-  //     };
-  //     emit('save', payload);
-  //   }
-  // });
-
-  // function cancel () {
-  //   router.back();
-  // }
   const onSubmit = handleSubmit(formValues => {
-    const payload: SaveSleeveRequest = {
-      ...formValues,
-    }
-    emit('submit', payload);
+
+    if(props.initialData && formInitialValues.value) {
+      const changedFields = getChangedFields(formValues, formInitialValues.value);
+
+      if(Object.keys(changedFields).length !== 0) {
+        const payload: Partial<SaveSleeveRequest> = changedFields;
+        emit('submit', payload);
+      }
+    }else {
+        const payload: SaveSleeveRequest = {
+          ...formValues,
+        }
+        emit('submit', payload);
+      }
   });
 
   function cancel () {
     router.back();
   }
+
 
 </script>
 

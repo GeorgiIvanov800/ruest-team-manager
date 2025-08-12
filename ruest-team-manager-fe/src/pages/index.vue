@@ -1,39 +1,46 @@
 <!-- eslint-disable @stylistic/semi -->
 <script setup lang="ts">
+import type { Router } from "vue-router";
+import type { ValidationRule } from "vuetify";
+import type { VForm } from "vuetify/components";
 
-  import type { Router } from 'vue-router';
-  import type { ValidationRule } from 'vuetify';
-  import type { VForm } from 'vuetify/components';
+const form = ref<InstanceType<typeof VForm> | null>(null);
+const printForm = ref<InstanceType<typeof VForm> | null>(null);
+const searchValue = ref("");
+const printValue = ref("");
+const router: Router = useRouter();
 
-  const form = ref<InstanceType<typeof VForm> | null>(null);
-  const printForm = ref<InstanceType<typeof VForm> | null>(null);
-  const searchValue = ref('');
-  const printValue = ref('');
-  const router: Router = useRouter();
 
-  const numericRules: ValidationRule[] = [
-    (value: string): true | string => {
-      if (/^[0-9]+$/.test(value)) return true;
-      return 'Bitte geben Sie nur Nummern';
-    },
-  ];
+const numericRules: ValidationRule[] = [
+  (value: string): true | string => {
+    if (/^[0-9]+$/.test(value)) return true;
+    return "Bitte geben Sie nur Nummern";
+  },
+];
 
-  async function onSearch (): Promise<void> {
-    const result = await form.value?.validate();
-    if (result?.valid) {
-      router.push({ path: '/sleeves', query: { sleeveSequence: searchValue.value } });
-    } else {
-      return;
-    }
+
+
+async function onSearch(): Promise<void> {
+  const result = await form.value?.validate();
+  if (result?.valid) {
+    router.push({
+      path: "/sleeves",
+      query: { sleeveSequence: searchValue.value },
+    });
+  } else {
+    return;
   }
+}
 
-  async function onPrint (): Promise<void> {
-    const result = await printForm.value?.validate();
-    if (result?.valid) {
-      router.push({ path: 'sleeves/print', query: { sleeveNumber: printValue.value } });
-    }
+async function onPrint(): Promise<void> {
+  const result = await printForm.value?.validate();
+  if (result?.valid) {
+    router.push({
+      path: "sleeves/print",
+      query: { sleeveNumber: printValue.value },
+    });
   }
-
+}
 </script>
 
 <template>
@@ -95,7 +102,9 @@
               size="x-large"
               variant="outlined"
               @click="onPrint"
-            > Print</v-btn>
+            >
+              Print</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
