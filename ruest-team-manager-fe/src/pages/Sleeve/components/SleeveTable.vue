@@ -49,6 +49,7 @@
       { title: 'Lager', key: 'warehouse', align: 'start', sortable: false },
       { title: 'Platz', key: 'slot', align: 'start', sortable: false },
       { title: 'Zahnrad', key: 'gear', sortable: false },
+      {title: 'Umfang', key: 'circumference', sortable: false},
       { title: 'Breite', key: 'width', sortable: false },
       { title: 'Sleeve Number', key: 'sleeveNumber', sortable: false },
       { title: 'Datum', key: 'manufactureDate', align: 'end', sortable: true },

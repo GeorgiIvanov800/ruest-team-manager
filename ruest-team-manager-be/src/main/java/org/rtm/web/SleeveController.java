@@ -2,6 +2,7 @@ package org.rtm.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.rtm.model.dto.request.DeleteSleeveRequest;
 import org.rtm.model.dto.request.SaveSleeveRequest;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.rtm.service.SleeveService;
@@ -83,7 +84,7 @@ public class SleeveController {
 
     @DeleteMapping("delete/{id}")
     @PreAuthorize("hasRole('admin')")
-    public ResponseEntity<Void> deleteSleeve(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteSleeve(@PathVariable("id") Long id, @RequestBody DeleteSleeveRequest deleteSleeveRequest) {
 
         sleeveService.deleteSleeve(id);
         return ResponseEntity.noContent().build();
