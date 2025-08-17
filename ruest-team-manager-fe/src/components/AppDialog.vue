@@ -1,3 +1,10 @@
+<script setup lang="ts">
+  import { useDialogStore } from '@/stores/dialogStore'
+
+  const dialog = useDialogStore();
+
+</script>
+
 <template>
   <v-dialog v-model="dialog.isVisible" width="auto">
     <v-card
@@ -6,6 +13,7 @@
       :text="dialog.message"
       :title="dialog.title"
     >
+    <v-textarea clearable laveb="Reason"></v-textarea>
       <template #actions>
         <v-spacer />
 
@@ -31,8 +39,3 @@
   </v-dialog>
 </template>
 
-<script setup lang="ts">
-  import { useDialogStore } from '@/stores/dialogStore'
-
-  const dialog = useDialogStore()
-</script>
