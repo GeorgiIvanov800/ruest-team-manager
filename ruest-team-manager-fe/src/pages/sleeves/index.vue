@@ -55,19 +55,22 @@
       title: 'Wirklich den Sleeve entfernen?',
       message: 'Sag kurz, warum der Sleeve entfernt wird.',
       color: 'warning',
-      confirmText: 'Ja, weg damit!',
+      confirmText: 'Weg damit!',
       cancelText: 'Noch mal überlegen',
+      requiresReason: true,
+      reason: '',
       onConfirm: async () => {
         try {
           isLoading.startLoading();
-          await deleteSleeve(sleeveId);
-          dialogStore.openAlert({ title: 'Geschafft!', message: 'Der Sleeve ist jetzt weg. Platz für Neues!', color: 'success', confirmText: 'OK', onConfirm: () => {
+          console.log("DELETE TRIGIRED!!!!!");
+          await deleteSleeve(sleeveId, {reason: dialogStore.reason.trim()});
+          dialogStore.openAlert({ title: 'Geschafft!', message: 'Der Sleeve ist jetzt weg. Platz für Neues!', color: 'success', confirmText: 'OK',onConfirm: () => {
             router.back();
           } })
         } catch (error_: unknown) {
           if (isAxiosError(error_)) {
             const message = error.value = error_.response?.data.message;
-            dialogStore.openAlert({ title: 'Error', message: message, color: 'warning' })
+            dialogStore.openAlert({ title: 'Error', message: message, color: 'warning'})
           }
         } finally {
           isLoading.stopLoading();

@@ -1,6 +1,6 @@
 /* eslint-disable @stylistic/semi */
 import { useKeycloak, type VueKeycloakInstance } from '@dsb-norge/vue-keycloak-js';
-import { Configuration, type SaveSleeveRequest, SleeveControllerApi, type SleeveResponse } from '@/openapi';
+import { Configuration, DeleteSleeveRequest, type SaveSleeveRequest, SleeveControllerApi, type SleeveResponse } from '@/openapi';
 
 const keycloak = useKeycloak() as unknown as VueKeycloakInstance
 
@@ -35,6 +35,6 @@ export async function updateSleeve (
   return response.data;
 }
 
-export async function deleteSleeve (id: number): Promise<void> {
-  await api.deleteSleeve(id);
+export async function deleteSleeve (id: number, reason: DeleteSleeveRequest): Promise<void> {
+  await api.deleteSleeve(id, reason);
 }
