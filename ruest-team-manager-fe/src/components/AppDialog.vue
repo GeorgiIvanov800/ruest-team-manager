@@ -1,4 +1,3 @@
-<!-- ConfigurableDialog.vue -->
 <template>
   <v-dialog v-model="dialog.isVisible" width="auto">
     <v-card
@@ -20,7 +19,6 @@
           {{ dialog.cancelText }}
         </v-btn>
 
-        <!-- Confirm button -->
         <v-btn
           :color="dialog.color"
           variant="tonal"

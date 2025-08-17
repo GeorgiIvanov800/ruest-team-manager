@@ -53,7 +53,7 @@
 
     dialogStore.openConfirm({
       title: 'Wirklich den Sleeve entfernen?',
-      message: 'Bist du dir sicher? Einmal weg, ist er weg – kein Zurück mehr!',
+      message: 'Sag kurz, warum der Sleeve entfernt wird.',
       color: 'warning',
       confirmText: 'Ja, weg damit!',
       cancelText: 'Noch mal überlegen',

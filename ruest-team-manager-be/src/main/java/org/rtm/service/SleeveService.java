@@ -1,6 +1,7 @@
 package org.rtm.service;
 
 import org.rtm.model.dto.request.SaveSleeveRequest;
+import org.rtm.model.dto.response.SleeveArchiveResponse;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,4 +23,6 @@ public interface SleeveService {
     Page<SleeveResponse> getAllSleevesInWarehouse(Pageable pageable, Long warehouseId);
 
     SleeveResponse getSleeveBySleeveByNumber(Integer sleeveNumber);
+
+    Page<SleeveArchiveResponse> getAllArchivedSleeves(Pageable pageable);
 }

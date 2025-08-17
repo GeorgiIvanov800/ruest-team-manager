@@ -7,10 +7,12 @@ import org.rtm.exception.DuplicateSleeveNumberException;
 import org.rtm.exception.NotFoundException;
 import org.rtm.mapper.SleeveMapper;
 import org.rtm.model.dto.request.SaveSleeveRequest;
+import org.rtm.model.dto.response.SleeveArchiveResponse;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.rtm.model.entity.Sleeve;
 import org.rtm.model.entity.Warehouse;
 import org.rtm.model.enums.WarehouseName;
+import org.rtm.repository.ArchiveSleeveRepository;
 import org.rtm.repository.SleeveRepository;
 import org.rtm.repository.WarehouseRepository;
 import org.rtm.service.SleeveService;
@@ -29,8 +31,9 @@ import java.util.Map;
 public class SleeveServiceImpl implements SleeveService {
 
     private final SleeveRepository sleeveRepository;
-    private final SleeveMapper sleeveMapper;
     private final WarehouseRepository warehouseRepository;
+    private final ArchiveSleeveRepository archiveSleeveRepository;
+    private final SleeveMapper sleeveMapper;
     private final ObjectMapper objectMapper;
 
     @Override
@@ -113,6 +116,12 @@ public class SleeveServiceImpl implements SleeveService {
                         new NotFoundException(sleeveNumber)
                 );
         return sleeveMapper.toResponse(sleeve);
+    }
+
+    @Override
+    public Page<SleeveArchiveResponse> getAllArchivedSleeves(Pageable pageable) {
+        return archiveSleeveRepository.findAll(pageable)
+                .map(sleeveMapper::toArchiveResponse);
     }
 
     private boolean sleeveNumberExists(Integer sleeveNumber) {

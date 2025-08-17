@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.rtm.model.dto.request.DeleteSleeveRequest;
 import org.rtm.model.dto.request.SaveSleeveRequest;
+import org.rtm.model.dto.response.SleeveArchiveResponse;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.rtm.service.SleeveService;
 import org.springframework.data.domain.Page;
@@ -88,6 +89,15 @@ public class SleeveController {
 
         sleeveService.deleteSleeve(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("sleeves/archive")
+    public ResponseEntity<Page<SleeveArchiveResponse>> getArchivedSleeves(
+            @PageableDefault(
+                    size = 3
+            ) Pageable pageable
+    ) {
+        return ResponseEntity.ok(sleeveService.getAllArchivedSleeves(pageable));
     }
 
 }
