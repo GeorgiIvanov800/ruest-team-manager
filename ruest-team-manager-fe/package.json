@@ -8,7 +8,10 @@
     "build": "vite build",
     "preview": "vite preview",
     "type-check": "vue-tsc --build --force",
-    "lint": "eslint . --fix"
+    "lint": "eslint . --fix",
+    "api:gen": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8088/api/v1/v3/api-docs -o src/openapi --skip-validate-spec",
+    "api:clean": "rimraf src/openapi",
+    "api:regen": "npm run api:clean && npm run api:gen"
   },
   "dependencies": {
     "@dsb-norge/vue-keycloak-js": "^3.0.3",
@@ -16,6 +19,7 @@
     "@mdi/font": "7.4.47",
     "@openapitools/openapi-generator-cli": "^2.4.19",
     "@vee-validate/zod": "^4.15.1",
+    "rimraf":"^6.0.1",
     "axios": "^1.10.0",
     "date-fns": "^4.1.0",
     "html2canvas": "^1.4.1",

@@ -20,7 +20,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/sleeves")
+@RequestMapping("/sleeves")
 @RequiredArgsConstructor
 public class SleeveController {
     private final SleeveService sleeveService;
@@ -91,7 +91,7 @@ public class SleeveController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("sleeves/archive")
+    @GetMapping("archive")
     public ResponseEntity<Page<SleeveArchiveResponse>> getArchivedSleeves(
             @PageableDefault(
                     size = 3

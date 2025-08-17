@@ -6,13 +6,14 @@ All URIs are relative to *http://localhost:8088/api/v1*
 |------------- | ------------- | -------------|
 |[**deleteSleeve**](#deletesleeve) | **DELETE** /sleeves/delete/{id} | |
 |[**getAllSleevesInWarehouse**](#getallsleevesinwarehouse) | **GET** /sleeves/warehouse/{warehouseId} | |
+|[**getArchivedSleeves**](#getarchivedsleeves) | **GET** /sleeves/archive | |
 |[**getSleeveNumber**](#getsleevenumber) | **GET** /sleeves/{sleeveNumber} | |
 |[**getSleeveSequenceNumber**](#getsleevesequencenumber) | **GET** /sleeves | |
 |[**saveSleeve**](#savesleeve) | **POST** /sleeves/save | |
 |[**updateSleeve**](#updatesleeve) | **PATCH** /sleeves/update/{id} | |
 
 # **deleteSleeve**
-> deleteSleeve()
+> deleteSleeve(deleteSleeveRequest)
 
 
 ### Example
@@ -20,16 +21,19 @@ All URIs are relative to *http://localhost:8088/api/v1*
 ```typescript
 import {
     SleeveControllerApi,
-    Configuration
+    Configuration,
+    DeleteSleeveRequest
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new SleeveControllerApi(configuration);
 
 let id: number; // (default to undefined)
+let deleteSleeveRequest: DeleteSleeveRequest; //
 
 const { status, data } = await apiInstance.deleteSleeve(
-    id
+    id,
+    deleteSleeveRequest
 );
 ```
 
@@ -37,6 +41,7 @@ const { status, data } = await apiInstance.deleteSleeve(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
+| **deleteSleeveRequest** | **DeleteSleeveRequest**|  | |
 | **id** | [**number**] |  | defaults to undefined|
 
 
@@ -50,7 +55,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 
@@ -97,6 +102,57 @@ const { status, data } = await apiInstance.getAllSleevesInWarehouse(
 ### Return type
 
 **PageSleeveResponse**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **getArchivedSleeves**
+> PageSleeveArchiveResponse getArchivedSleeves()
+
+
+### Example
+
+```typescript
+import {
+    SleeveControllerApi,
+    Configuration,
+    Pageable
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new SleeveControllerApi(configuration);
+
+let pageable: Pageable; // (default to undefined)
+
+const { status, data } = await apiInstance.getArchivedSleeves(
+    pageable
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **pageable** | **Pageable** |  | defaults to undefined|
+
+
+### Return type
+
+**PageSleeveArchiveResponse**
 
 ### Authorization
 
