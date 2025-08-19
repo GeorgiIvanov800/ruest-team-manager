@@ -97,6 +97,7 @@ public class SleeveController {
                     size = 3
             ) Pageable pageable
     ) {
+
         return ResponseEntity.ok(sleeveService.getAllArchivedSleeves(pageable));
     }
 

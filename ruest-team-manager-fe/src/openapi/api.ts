@@ -39,148 +39,33 @@ export interface DeleteSleeveRequest {
 /**
  * 
  * @export
- * @interface PageSleeveArchiveResponse
+ * @interface PageMetadata
  */
-export interface PageSleeveArchiveResponse {
+export interface PageMetadata {
     /**
      * 
      * @type {number}
-     * @memberof PageSleeveArchiveResponse
+     * @memberof PageMetadata
+     */
+    'size'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    'number'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
      */
     'totalElements'?: number;
     /**
      * 
      * @type {number}
-     * @memberof PageSleeveArchiveResponse
+     * @memberof PageMetadata
      */
     'totalPages'?: number;
-    /**
-     * 
-     * @type {PageableObject}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'pageable'?: PageableObject;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'first'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'last'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'size'?: number;
-    /**
-     * 
-     * @type {Array<SleeveArchiveResponse>}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'content'?: Array<SleeveArchiveResponse>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'number'?: number;
-    /**
-     * 
-     * @type {SortObject}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'sort'?: SortObject;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'numberOfElements'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveArchiveResponse
-     */
-    'empty'?: boolean;
-}
-/**
- * 
- * @export
- * @interface PageSleeveResponse
- */
-export interface PageSleeveResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveResponse
-     */
-    'totalElements'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveResponse
-     */
-    'totalPages'?: number;
-    /**
-     * 
-     * @type {PageableObject}
-     * @memberof PageSleeveResponse
-     */
-    'pageable'?: PageableObject;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveResponse
-     */
-    'first'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveResponse
-     */
-    'last'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveResponse
-     */
-    'size'?: number;
-    /**
-     * 
-     * @type {Array<SleeveResponse>}
-     * @memberof PageSleeveResponse
-     */
-    'content'?: Array<SleeveResponse>;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveResponse
-     */
-    'number'?: number;
-    /**
-     * 
-     * @type {SortObject}
-     * @memberof PageSleeveResponse
-     */
-    'sort'?: SortObject;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageSleeveResponse
-     */
-    'numberOfElements'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PageSleeveResponse
-     */
-    'empty'?: boolean;
 }
 /**
  * 
@@ -210,45 +95,40 @@ export interface Pageable {
 /**
  * 
  * @export
- * @interface PageableObject
+ * @interface PagedModelSleeveArchiveResponse
  */
-export interface PageableObject {
+export interface PagedModelSleeveArchiveResponse {
     /**
      * 
-     * @type {boolean}
-     * @memberof PageableObject
+     * @type {Array<SleeveArchiveResponse>}
+     * @memberof PagedModelSleeveArchiveResponse
      */
-    'paged'?: boolean;
+    'content'?: Array<SleeveArchiveResponse>;
     /**
      * 
-     * @type {number}
-     * @memberof PageableObject
+     * @type {PageMetadata}
+     * @memberof PagedModelSleeveArchiveResponse
      */
-    'pageNumber'?: number;
+    'page'?: PageMetadata;
+}
+/**
+ * 
+ * @export
+ * @interface PagedModelSleeveResponse
+ */
+export interface PagedModelSleeveResponse {
     /**
      * 
-     * @type {number}
-     * @memberof PageableObject
+     * @type {Array<SleeveResponse>}
+     * @memberof PagedModelSleeveResponse
      */
-    'pageSize'?: number;
+    'content'?: Array<SleeveResponse>;
     /**
      * 
-     * @type {boolean}
-     * @memberof PageableObject
+     * @type {PageMetadata}
+     * @memberof PagedModelSleeveResponse
      */
-    'unpaged'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof PageableObject
-     */
-    'offset'?: number;
-    /**
-     * 
-     * @type {SortObject}
-     * @memberof PageableObject
-     */
-    'sort'?: SortObject;
+    'page'?: PageMetadata;
 }
 /**
  * 
@@ -375,6 +255,12 @@ export type SaveSleeveRequestConditionEnum = typeof SaveSleeveRequestConditionEn
  * @interface SleeveArchiveResponse
  */
 export interface SleeveArchiveResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'id'?: number;
     /**
      * 
      * @type {number}
@@ -588,31 +474,6 @@ export const SleeveResponseConditionEnum = {
 
 export type SleeveResponseConditionEnum = typeof SleeveResponseConditionEnum[keyof typeof SleeveResponseConditionEnum];
 
-/**
- * 
- * @export
- * @interface SortObject
- */
-export interface SortObject {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SortObject
-     */
-    'sorted'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SortObject
-     */
-    'unsorted'?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SortObject
-     */
-    'empty'?: boolean;
-}
 /**
  * 
  * @export
@@ -968,7 +829,7 @@ export const SleeveControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageSleeveResponse>> {
+        async getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PagedModelSleeveResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSleevesInWarehouse(pageable, warehouseId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getAllSleevesInWarehouse']?.[localVarOperationServerIndex]?.url;
@@ -980,7 +841,7 @@ export const SleeveControllerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PageSleeveArchiveResponse>> {
+        async getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PagedModelSleeveArchiveResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getArchivedSleeves(pageable, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getArchivedSleeves']?.[localVarOperationServerIndex]?.url;
@@ -1062,7 +923,7 @@ export const SleeveControllerApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): AxiosPromise<PageSleeveResponse> {
+        getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): AxiosPromise<PagedModelSleeveResponse> {
             return localVarFp.getAllSleevesInWarehouse(pageable, warehouseId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1071,7 +932,7 @@ export const SleeveControllerApiFactory = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): AxiosPromise<PageSleeveArchiveResponse> {
+        getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): AxiosPromise<PagedModelSleeveArchiveResponse> {
             return localVarFp.getArchivedSleeves(pageable, options).then((request) => request(axios, basePath));
         },
         /**

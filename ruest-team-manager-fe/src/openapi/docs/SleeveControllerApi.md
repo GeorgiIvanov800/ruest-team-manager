@@ -67,7 +67,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getAllSleevesInWarehouse**
-> PageSleeveResponse getAllSleevesInWarehouse()
+> PagedModelSleeveResponse getAllSleevesInWarehouse()
 
 
 ### Example
@@ -101,7 +101,7 @@ const { status, data } = await apiInstance.getAllSleevesInWarehouse(
 
 ### Return type
 
-**PageSleeveResponse**
+**PagedModelSleeveResponse**
 
 ### Authorization
 
@@ -121,7 +121,7 @@ const { status, data } = await apiInstance.getAllSleevesInWarehouse(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **getArchivedSleeves**
-> PageSleeveArchiveResponse getArchivedSleeves()
+> PagedModelSleeveArchiveResponse getArchivedSleeves()
 
 
 ### Example
@@ -152,7 +152,7 @@ const { status, data } = await apiInstance.getArchivedSleeves(
 
 ### Return type
 
-**PageSleeveArchiveResponse**
+**PagedModelSleeveArchiveResponse**
 
 ### Authorization
 

@@ -5,6 +5,7 @@ import org.rtm.model.enums.SleeveType;
 import java.time.LocalDate;
 
 public record SleeveArchiveResponse(
+        Long id,
         Integer sequenceNumber,
         Integer sleeveNumber,
         String design,
