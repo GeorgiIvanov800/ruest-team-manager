@@ -16,6 +16,7 @@ import org.rtm.repository.ArchiveSleeveRepository;
 import org.rtm.repository.SleeveRepository;
 import org.rtm.repository.WarehouseRepository;
 import org.rtm.service.SleeveService;
+import org.rtm.utils.CurrentUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,7 @@ public class SleeveServiceImpl implements SleeveService {
     private final ArchiveSleeveRepository archiveSleeveRepository;
     private final SleeveMapper sleeveMapper;
     private final ObjectMapper objectMapper;
+    private final CurrentUser currentUser;
 
     @Override
     @Transactional
@@ -97,9 +99,9 @@ public class SleeveServiceImpl implements SleeveService {
     public void deleteSleeve(Long id) {
 
         sleeveRepository.findById(id).orElseThrow(() -> new NotFoundException(Math.toIntExact(id)));
+        String fullName = currentUser.getFullName();
 
-
-        sleeveRepository.deleteById(id);
+//        sleeveRepository.deleteById(id);
     }
 
     @Override

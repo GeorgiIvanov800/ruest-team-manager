@@ -1,5 +1,6 @@
 <!-- eslint-disable @stylistic/semi -->
 <script setup lang="ts">
+import { useKeycloak, VueKeycloakInstance } from "@dsb-norge/vue-keycloak-js";
 import type { Router } from "vue-router";
 import type { ValidationRule } from "vuetify";
 import type { VForm } from "vuetify/components";
@@ -9,6 +10,7 @@ const printForm = ref<InstanceType<typeof VForm> | null>(null);
 const searchValue = ref("");
 const printValue = ref("");
 const router: Router = useRouter();
+const keycloak: VueKeycloakInstance =  useKeycloak();
 
 
 const numericRules: ValidationRule[] = [
@@ -18,7 +20,7 @@ const numericRules: ValidationRule[] = [
   },
 ];
 
-
+console.log("KeyCloak Token: ", keycloak.token);
 
 async function onSearch(): Promise<void> {
   const result = await form.value?.validate();
