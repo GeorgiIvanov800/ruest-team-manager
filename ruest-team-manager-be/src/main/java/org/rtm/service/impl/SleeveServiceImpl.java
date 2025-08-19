@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import org.rtm.exception.DuplicateSleeveNumberException;
 import org.rtm.exception.NotFoundException;
 import org.rtm.mapper.SleeveMapper;
+import org.rtm.model.dto.request.DeleteSleeveRequest;
 import org.rtm.model.dto.request.SaveSleeveRequest;
 import org.rtm.model.dto.response.SleeveArchiveResponse;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.rtm.model.entity.Sleeve;
+import org.rtm.model.entity.SleeveArchive;
 import org.rtm.model.entity.Warehouse;
 import org.rtm.model.enums.WarehouseName;
 import org.rtm.repository.ArchiveSleeveRepository;
@@ -22,6 +24,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -96,12 +99,23 @@ public class SleeveServiceImpl implements SleeveService {
     }
 
     @Override
-    public void deleteSleeve(Long id) {
+    @Transactional
+    public void deleteSleeve(Long id, DeleteSleeveRequest deleteSleeveRequest) {
+        Sleeve sleeveToDelete = sleeveRepository.findById(id).orElseThrow(() -> new NotFoundException(Math.toIntExact(id)));
 
-        sleeveRepository.findById(id).orElseThrow(() -> new NotFoundException(Math.toIntExact(id)));
-        String fullName = currentUser.getFullName();
+        SleeveArchive sleeveArchive = sleeveMapper.toArchiveEntity(sleeveToDelete);
 
-//        sleeveRepository.deleteById(id);
+        String deleteReason = deleteSleeveRequest.reason();
+
+        String deletedBy = currentUser.getFullName();
+
+        sleeveArchive.setOriginalId(sleeveToDelete.getId());
+        sleeveArchive.setDeleteReason(deleteReason);
+        sleeveArchive.setDeletedByName(deletedBy);
+        sleeveArchive.setDeletedAt(LocalDate.now());
+
+        archiveSleeveRepository.save(sleeveArchive);
+        sleeveRepository.deleteById(id);
     }
 
     @Override

@@ -19,5 +19,6 @@ public interface SleeveMapper {
 
     SleeveArchiveResponse toArchiveResponse(SleeveArchive sleeveArchive);
 
-    Sleeve toArchiveEntity(SleeveArchive sleeveArchive);
+    @Mapping(target = "id", ignore = true)
+    SleeveArchive toArchiveEntity(Sleeve sleeve);
 }

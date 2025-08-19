@@ -58,8 +58,4 @@ public class SleeveArchive extends BaseEntity {
     @Column(nullable = false)
     private String deletedByName;
 
-    @Column(nullable = false)
-    private String deletedById;
-
-
 }

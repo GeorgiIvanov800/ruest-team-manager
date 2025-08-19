@@ -87,7 +87,7 @@ public class SleeveController {
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<Void> deleteSleeve(@PathVariable("id") Long id, @RequestBody DeleteSleeveRequest deleteSleeveRequest) {
 
-        sleeveService.deleteSleeve(id);
+        sleeveService.deleteSleeve(id, deleteSleeveRequest);
         return ResponseEntity.noContent().build();
     }
 
