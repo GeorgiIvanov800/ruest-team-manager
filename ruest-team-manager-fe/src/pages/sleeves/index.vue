@@ -96,8 +96,8 @@
 </script>
 
 <template>
-  <v-sheet class="pa-8 elevation-4 rounded-lg" color="surface">
-    <v-container>
+   <v-sheet class="mx-auto my-6" :max-width="1700" rounded elevation="2">
+    <v-container max-width="1700">
       <SleeveTable
         :is-admin="isAdmin"
         :search-value="searchValue"
