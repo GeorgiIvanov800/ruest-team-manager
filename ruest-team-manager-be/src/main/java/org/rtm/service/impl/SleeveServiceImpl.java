@@ -136,10 +136,9 @@ public class SleeveServiceImpl implements SleeveService {
 
     @Override
     public Page<SleeveArchiveResponse> getAllArchivedSleeves(Pageable pageable) {
-        Page<SleeveArchiveResponse> map = archiveSleeveRepository.findAll(pageable)
-                .map(sleeveMapper::toArchiveResponse);
 
-        return map;
+        return archiveSleeveRepository.findAll(pageable)
+                .map(sleeveMapper::toArchiveResponse);
     }
 
     private boolean sleeveNumberExists(Integer sleeveNumber) {
