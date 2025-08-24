@@ -16,13 +16,13 @@ manufacturers = ["Acme Co.", "Globex", "Umbrella Corp", "Initech", "Soylent",
 notes_options = [None, "Back stock", "Minor scratches", "Surface wear", 
                  "Prototype test", "Test unit", "Check gear teeth", "Replacement due"]
 
-statuses = ["AVAILABLE", "IN_USE", "MAINTENANCE"]
-types = ["PAINT", "FLAT", "LACK", "NON_FLAT"]
+
+types = ["PAINT", "FLAT", "NON_FLAT"]
 conditions = ["NEW", "USED", "DAMAGED"]
 
 # Settings for generation
-start_sleeve = 3001
-count = 20
+start_sleeve = 3000
+count = 50
 mfg_min = date(2022, 1, 1)
 mfg_max = date(2025, 4, 30)
 last_max = date(2025, 5, 15)
@@ -30,7 +30,7 @@ last_max = date(2025, 5, 15)
 # Generate values
 values = []
 for i in range(count):
-    seq = random.choice([1001, 1002, 1003, 1005, 1006, 1007, 1008, 1009, 1010, 1011])
+    seq = random.choice([1001, 1002, 1003, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011])
     sn = start_sleeve + i
     design = random.choice(designs)
     color = random.choice(colors)
@@ -40,10 +40,8 @@ for i in range(count):
     circ = random.randint(200, 300)
     slot = random.randint(1, 10)
     mfg_date = mfg_min + timedelta(days=random.randint(0, (mfg_max - mfg_min).days))
-    last_date = mfg_date + timedelta(days=random.randint(0, (last_max - mfg_date).days))
     km = random.randint(0, 5000)
     wh = (i % 3) + 1
-    status = random.choice(statuses)
     type_ = random.choice(types)
     cond = random.choice(conditions)
     width = random.randint(40, 60)
@@ -51,14 +49,14 @@ for i in range(count):
     note_str = f"'{note}'" if note is not None else "NULL"
     line = (
         f"  ({seq}, {sn}, '{design}', '{color}', '{manufacturer}', {note_str}, "
-        f"{gear}, {circ}, {slot}, '{mfg_date}', {width}, '{last_date}', {km}, "
-        f"{wh}, '{status}', '{type_}', '{cond}')"
+        f"{gear}, {circ}, {slot}, '{mfg_date}', {width}, {km}, "
+        f"{wh},'{type_}', '{cond}')"
     )
     values.append(line)
 
 # Print multi-row INSERT
 print("INSERT INTO sleeves (")
 print("  sequence_number, sleeve_number, design, color, manufacturer, notes, gear, circumference, slot,")
-print("  manufacture_date, width, last_used_at, km_stand, warehouse_id, status, \"type\", \"condition\"")
+print("  manufacture_date, width, km_stand, warehouse_id, \"type\", \"condition\"")
 print(") VALUES")
 print(",\n".join(values) + ";")

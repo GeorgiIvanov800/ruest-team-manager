@@ -28,7 +28,7 @@ public class SleeveController {
     @PostMapping(value = "/save", consumes = "application/json", produces = "application/json")
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<SleeveResponse> saveSleeve(@RequestBody SaveSleeveRequest saveSleeveRequest) {
-
+        System.out.println();
         SleeveResponse sleeveResponse = sleeveService.saveSleeve(saveSleeveRequest);
 
         return ResponseEntity.created(

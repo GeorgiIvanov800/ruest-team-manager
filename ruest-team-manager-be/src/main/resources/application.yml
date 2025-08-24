@@ -11,7 +11,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
     database: postgresql
+  sql:
+    init:
+      mode: never
   security:
     oauth2:
       resourceserver:
