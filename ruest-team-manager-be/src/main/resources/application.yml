@@ -7,11 +7,15 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
+
     database: postgresql
+  sql:
+    init:
+      mode: never
   security:
     oauth2:
       resourceserver:
@@ -20,6 +24,8 @@ spring:
           audiences: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_AUDIENCE}
 server:
   port: 8088
+  servlet:
+    context-path: /api/v1
 springdoc:
   default-produces-media-type: application/json
 

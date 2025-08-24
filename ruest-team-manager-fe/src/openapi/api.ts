@@ -13,7 +13,1055 @@
  */
 
 
+import type { Configuration } from './configuration';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
+import globalAxios from 'axios';
+// Some imports not used depending on template conditions
+// @ts-ignore
+import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
+import type { RequestArgs } from './base';
+// @ts-ignore
+import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
-export * from './apis/sleeve-controller-api';
-export * from './apis/user-controller-api';
+/**
+ * 
+ * @export
+ * @interface DeleteSleeveRequest
+ */
+export interface DeleteSleeveRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof DeleteSleeveRequest
+     */
+    'reason': string;
+}
+/**
+ * 
+ * @export
+ * @interface PageMetadata
+ */
+export interface PageMetadata {
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    'size'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    'number'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    'totalElements'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof PageMetadata
+     */
+    'totalPages'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface Pageable
+ */
+export interface Pageable {
+    /**
+     * 
+     * @type {number}
+     * @memberof Pageable
+     */
+    'page'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof Pageable
+     */
+    'size'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Pageable
+     */
+    'sort'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface PagedModelSleeveArchiveResponse
+ */
+export interface PagedModelSleeveArchiveResponse {
+    /**
+     * 
+     * @type {Array<SleeveArchiveResponse>}
+     * @memberof PagedModelSleeveArchiveResponse
+     */
+    'content'?: Array<SleeveArchiveResponse>;
+    /**
+     * 
+     * @type {PageMetadata}
+     * @memberof PagedModelSleeveArchiveResponse
+     */
+    'page'?: PageMetadata;
+}
+/**
+ * 
+ * @export
+ * @interface PagedModelSleeveResponse
+ */
+export interface PagedModelSleeveResponse {
+    /**
+     * 
+     * @type {Array<SleeveResponse>}
+     * @memberof PagedModelSleeveResponse
+     */
+    'content'?: Array<SleeveResponse>;
+    /**
+     * 
+     * @type {PageMetadata}
+     * @memberof PagedModelSleeveResponse
+     */
+    'page'?: PageMetadata;
+}
+/**
+ * 
+ * @export
+ * @interface SaveSleeveRequest
+ */
+export interface SaveSleeveRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'sequenceNumber': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'sleeveNumber': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'design': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'color': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'manufacturer': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'gear': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'circumference': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'slot': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'manufactureDate': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'width': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SaveSleeveRequest
+     */
+    'kmStand'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'warehouse': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'status'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'type': SaveSleeveRequestTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SaveSleeveRequest
+     */
+    'condition': SaveSleeveRequestConditionEnum;
+}
+
+export const SaveSleeveRequestTypeEnum = {
+    Paint: 'PAINT',
+    Flat: 'FLAT',
+    NonFlat: 'NON_FLAT'
+} as const;
+
+export type SaveSleeveRequestTypeEnum = typeof SaveSleeveRequestTypeEnum[keyof typeof SaveSleeveRequestTypeEnum];
+export const SaveSleeveRequestConditionEnum = {
+    Damaged: 'DAMAGED',
+    New: 'NEW',
+    Used: 'USED'
+} as const;
+
+export type SaveSleeveRequestConditionEnum = typeof SaveSleeveRequestConditionEnum[keyof typeof SaveSleeveRequestConditionEnum];
+
+/**
+ * 
+ * @export
+ * @interface SleeveArchiveResponse
+ */
+export interface SleeveArchiveResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'sequenceNumber'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'sleeveNumber'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'design'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'manufacturer'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'gear'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'circumference'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'manufactureDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveArchiveResponse
+     */
+    'width'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'type'?: SleeveArchiveResponseTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'deleteReason'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'deletedAt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveArchiveResponse
+     */
+    'deletedByName'?: string;
+}
+
+export const SleeveArchiveResponseTypeEnum = {
+    Paint: 'PAINT',
+    Flat: 'FLAT',
+    NonFlat: 'NON_FLAT'
+} as const;
+
+export type SleeveArchiveResponseTypeEnum = typeof SleeveArchiveResponseTypeEnum[keyof typeof SleeveArchiveResponseTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface SleeveResponse
+ */
+export interface SleeveResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'sequenceNumber'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'sleeveNumber'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'design'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'manufacturer'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'notes'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'gear'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'circumference'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'slot'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'manufactureDate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'width'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SleeveResponse
+     */
+    'kmStand'?: number;
+    /**
+     * 
+     * @type {WarehouseResponse}
+     * @memberof SleeveResponse
+     */
+    'warehouse'?: WarehouseResponse;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'status'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'type'?: SleeveResponseTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof SleeveResponse
+     */
+    'condition'?: SleeveResponseConditionEnum;
+}
+
+export const SleeveResponseTypeEnum = {
+    Paint: 'PAINT',
+    Flat: 'FLAT',
+    NonFlat: 'NON_FLAT'
+} as const;
+
+export type SleeveResponseTypeEnum = typeof SleeveResponseTypeEnum[keyof typeof SleeveResponseTypeEnum];
+export const SleeveResponseConditionEnum = {
+    Damaged: 'DAMAGED',
+    New: 'NEW',
+    Used: 'USED'
+} as const;
+
+export type SleeveResponseConditionEnum = typeof SleeveResponseConditionEnum[keyof typeof SleeveResponseConditionEnum];
+
+/**
+ * 
+ * @export
+ * @interface WarehouseResponse
+ */
+export interface WarehouseResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof WarehouseResponse
+     */
+    'id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WarehouseResponse
+     */
+    'name'?: WarehouseResponseNameEnum;
+}
+
+export const WarehouseResponseNameEnum = {
+    G: 'G',
+    L3: 'L3',
+    L1: 'L1'
+} as const;
+
+export type WarehouseResponseNameEnum = typeof WarehouseResponseNameEnum[keyof typeof WarehouseResponseNameEnum];
+
+
+/**
+ * SleeveControllerApi - axios parameter creator
+ * @export
+ */
+export const SleeveControllerApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @param {number} id 
+         * @param {DeleteSleeveRequest} deleteSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteSleeve: async (id: number, deleteSleeveRequest: DeleteSleeveRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('deleteSleeve', 'id', id)
+            // verify required parameter 'deleteSleeveRequest' is not null or undefined
+            assertParamExists('deleteSleeve', 'deleteSleeveRequest', deleteSleeveRequest)
+            const localVarPath = `/sleeves/delete/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(deleteSleeveRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {number} warehouseId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllSleevesInWarehouse: async (pageable: Pageable, warehouseId: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pageable' is not null or undefined
+            assertParamExists('getAllSleevesInWarehouse', 'pageable', pageable)
+            // verify required parameter 'warehouseId' is not null or undefined
+            assertParamExists('getAllSleevesInWarehouse', 'warehouseId', warehouseId)
+            const localVarPath = `/sleeves/warehouse/{warehouseId}`
+                .replace(`{${"warehouseId"}}`, encodeURIComponent(String(warehouseId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (pageable !== undefined) {
+                for (const [key, value] of Object.entries(pageable)) {
+                    localVarQueryParameter[key] = value;
+                }
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getArchivedSleeves: async (pageable: Pageable, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'pageable' is not null or undefined
+            assertParamExists('getArchivedSleeves', 'pageable', pageable)
+            const localVarPath = `/sleeves/archive`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (pageable !== undefined) {
+                for (const [key, value] of Object.entries(pageable)) {
+                    localVarQueryParameter[key] = value;
+                }
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} sleeveNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveNumber: async (sleeveNumber: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sleeveNumber' is not null or undefined
+            assertParamExists('getSleeveNumber', 'sleeveNumber', sleeveNumber)
+            const localVarPath = `/sleeves/{sleeveNumber}`
+                .replace(`{${"sleeveNumber"}}`, encodeURIComponent(String(sleeveNumber)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} sequence 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveSequenceNumber: async (sequence: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'sequence' is not null or undefined
+            assertParamExists('getSleeveSequenceNumber', 'sequence', sequence)
+            const localVarPath = `/sleeves`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (sequence !== undefined) {
+                localVarQueryParameter['sequence'] = sequence;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {SaveSleeveRequest} saveSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        saveSleeve: async (saveSleeveRequest: SaveSleeveRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'saveSleeveRequest' is not null or undefined
+            assertParamExists('saveSleeve', 'saveSleeveRequest', saveSleeveRequest)
+            const localVarPath = `/sleeves/save`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(saveSleeveRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {{ [key: string]: any; }} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateSleeve: async (id: number, requestBody: { [key: string]: any; }, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('updateSleeve', 'id', id)
+            // verify required parameter 'requestBody' is not null or undefined
+            assertParamExists('updateSleeve', 'requestBody', requestBody)
+            const localVarPath = `/sleeves/update/{id}`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(requestBody, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SleeveControllerApi - functional programming interface
+ * @export
+ */
+export const SleeveControllerApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = SleeveControllerApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @param {number} id 
+         * @param {DeleteSleeveRequest} deleteSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async deleteSleeve(id: number, deleteSleeveRequest: DeleteSleeveRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.deleteSleeve(id, deleteSleeveRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.deleteSleeve']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {number} warehouseId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PagedModelSleeveResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getAllSleevesInWarehouse(pageable, warehouseId, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getAllSleevesInWarehouse']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PagedModelSleeveArchiveResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getArchivedSleeves(pageable, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getArchivedSleeves']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {number} sleeveNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSleeveNumber(sleeveNumber: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SleeveResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSleeveNumber(sleeveNumber, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getSleeveNumber']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {number} sequence 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SleeveResponse>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSleeveSequenceNumber(sequence, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getSleeveSequenceNumber']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {SaveSleeveRequest} saveSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async saveSleeve(saveSleeveRequest: SaveSleeveRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SleeveResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.saveSleeve(saveSleeveRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.saveSleeve']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {{ [key: string]: any; }} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async updateSleeve(id: number, requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SleeveResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateSleeve(id, requestBody, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.updateSleeve']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * SleeveControllerApi - factory interface
+ * @export
+ */
+export const SleeveControllerApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = SleeveControllerApiFp(configuration)
+    return {
+        /**
+         * 
+         * @param {number} id 
+         * @param {DeleteSleeveRequest} deleteSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteSleeve(id: number, deleteSleeveRequest: DeleteSleeveRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.deleteSleeve(id, deleteSleeveRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {number} warehouseId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig): AxiosPromise<PagedModelSleeveResponse> {
+            return localVarFp.getAllSleevesInWarehouse(pageable, warehouseId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {Pageable} pageable 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig): AxiosPromise<PagedModelSleeveArchiveResponse> {
+            return localVarFp.getArchivedSleeves(pageable, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} sleeveNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveNumber(sleeveNumber: number, options?: RawAxiosRequestConfig): AxiosPromise<SleeveResponse> {
+            return localVarFp.getSleeveNumber(sleeveNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} sequence 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<SleeveResponse>> {
+            return localVarFp.getSleeveSequenceNumber(sequence, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {SaveSleeveRequest} saveSleeveRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        saveSleeve(saveSleeveRequest: SaveSleeveRequest, options?: RawAxiosRequestConfig): AxiosPromise<SleeveResponse> {
+            return localVarFp.saveSleeve(saveSleeveRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {number} id 
+         * @param {{ [key: string]: any; }} requestBody 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateSleeve(id: number, requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig): AxiosPromise<SleeveResponse> {
+            return localVarFp.updateSleeve(id, requestBody, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * SleeveControllerApi - object-oriented interface
+ * @export
+ * @class SleeveControllerApi
+ * @extends {BaseAPI}
+ */
+export class SleeveControllerApi extends BaseAPI {
+    /**
+     * 
+     * @param {number} id 
+     * @param {DeleteSleeveRequest} deleteSleeveRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public deleteSleeve(id: number, deleteSleeveRequest: DeleteSleeveRequest, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).deleteSleeve(id, deleteSleeveRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {Pageable} pageable 
+     * @param {number} warehouseId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public getAllSleevesInWarehouse(pageable: Pageable, warehouseId: number, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).getAllSleevesInWarehouse(pageable, warehouseId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {Pageable} pageable 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public getArchivedSleeves(pageable: Pageable, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).getArchivedSleeves(pageable, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} sleeveNumber 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public getSleeveNumber(sleeveNumber: number, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).getSleeveNumber(sleeveNumber, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} sequence 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).getSleeveSequenceNumber(sequence, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {SaveSleeveRequest} saveSleeveRequest 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public saveSleeve(saveSleeveRequest: SaveSleeveRequest, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).saveSleeve(saveSleeveRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {number} id 
+     * @param {{ [key: string]: any; }} requestBody 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public updateSleeve(id: number, requestBody: { [key: string]: any; }, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).updateSleeve(id, requestBody, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
 

@@ -1,12 +1,27 @@
-<!-- ConfigurableDialog.vue -->
+<script setup lang="ts">
+import { useDialogStore } from "@/stores/dialogStore";
+
+const dialog = useDialogStore();
+</script>
+
 <template>
   <v-dialog v-model="dialog.isVisible" width="auto">
     <v-card
       max-width="400"
-      :prepend-icon="dialog.color === 'success' ? 'mdi-check-circle' : 'mdi-alert-circle'"
+      :prepend-icon="
+        dialog.color === 'success' ? 'mdi-check-circle' : 'mdi-alert-circle'
+      "
       :text="dialog.message"
       :title="dialog.title"
     >
+      <!-- Show text area only if the user deletes the Sleeve -->
+      <v-textarea
+        variant="outlined"
+        v-if="dialog.requiresReason"
+        clearable
+        label="Grund"
+        v-model="dialog.reason"
+      ></v-textarea>
       <template #actions>
         <v-spacer />
 
@@ -20,10 +35,10 @@
           {{ dialog.cancelText }}
         </v-btn>
 
-        <!-- Confirm button -->
         <v-btn
           :color="dialog.color"
           variant="tonal"
+          :disabled="dialog.requiresReason && !(dialog.reason && dialog.reason.trim())"
           @click="dialog.confirm"
         >
           {{ dialog.confirmText }}
@@ -32,9 +47,3 @@
     </v-card>
   </v-dialog>
 </template>
-
-<script setup lang="ts">
-  import { useDialogStore } from '@/stores/dialogStore'
-
-  const dialog = useDialogStore()
-</script>

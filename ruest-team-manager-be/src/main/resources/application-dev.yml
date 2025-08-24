@@ -12,6 +12,9 @@ spring:
       hibernate:
         format_sql: true
     database: postgresql
+  sql:
+    init:
+      mode: never
   security:
     oauth2:
       resourceserver:
@@ -20,5 +23,7 @@ spring:
           audiences: rtm
 server:
   port: 8088
+  servlet:
+    context-path: /api/v1
 springdoc:
   default-produces-media-type: application/json

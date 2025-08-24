@@ -26,11 +26,6 @@ services:
       KC_HOSTNAME_STRICT: "false"
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin
-      KC_DB: postgres
-      KC_DB_URL_HOST: postgres
-      KC_DB_URL_DATABASE: ruest_team_manager
-      KC_DB_USERNAME: username
-      KC_DB_PASSWORD: password
     ports:
       - "9090:8080"
     volumes:

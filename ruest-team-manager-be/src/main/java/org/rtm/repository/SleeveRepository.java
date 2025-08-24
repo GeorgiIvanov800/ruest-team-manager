@@ -16,7 +16,6 @@ public interface SleeveRepository extends JpaRepository<Sleeve, Long> {
 
     List<Sleeve> findAllBySequenceNumber(int sequenceNumber);
 
-
     boolean existsBySleeveNumber(Integer sleeveNumber);
 
     Page<Sleeve> findAllByWarehouseId(Long warehouseId, Pageable pageable);

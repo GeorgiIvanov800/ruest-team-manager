@@ -22,6 +22,7 @@ declare module 'vue-router/auto-routes' {
     '/Sleeve/components/SleeveForm': RouteRecordInfo<'/Sleeve/components/SleeveForm', '/Sleeve/components/SleeveForm', Record<never, never>, Record<never, never>>,
     '/Sleeve/components/SleeveTable': RouteRecordInfo<'/Sleeve/components/SleeveTable', '/Sleeve/components/SleeveTable', Record<never, never>, Record<never, never>>,
     '/sleeves/': RouteRecordInfo<'/sleeves/', '/sleeves', Record<never, never>, Record<never, never>>,
+    '/sleeves/archive/': RouteRecordInfo<'/sleeves/archive/', '/sleeves/archive', Record<never, never>, Record<never, never>>,
     '/sleeves/create': RouteRecordInfo<'/sleeves/create', '/sleeves/create', Record<never, never>, Record<never, never>>,
     '/sleeves/edit/[id]': RouteRecordInfo<'/sleeves/edit/[id]', '/sleeves/edit/:id', { id: ParamValue<true> }, { id: ParamValue<false> }>,
     '/sleeves/print': RouteRecordInfo<'/sleeves/print', '/sleeves/print', Record<never, never>, Record<never, never>>,

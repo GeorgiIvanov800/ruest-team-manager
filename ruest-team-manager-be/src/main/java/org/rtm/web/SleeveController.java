@@ -2,7 +2,9 @@ package org.rtm.web;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.rtm.model.dto.request.DeleteSleeveRequest;
 import org.rtm.model.dto.request.SaveSleeveRequest;
+import org.rtm.model.dto.response.SleeveArchiveResponse;
 import org.rtm.model.dto.response.SleeveResponse;
 import org.rtm.service.SleeveService;
 import org.springframework.data.domain.Page;
@@ -18,7 +20,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/v1/sleeves")
+@RequestMapping("/sleeves")
 @RequiredArgsConstructor
 public class SleeveController {
     private final SleeveService sleeveService;
@@ -26,7 +28,7 @@ public class SleeveController {
     @PostMapping(value = "/save", consumes = "application/json", produces = "application/json")
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<SleeveResponse> saveSleeve(@RequestBody SaveSleeveRequest saveSleeveRequest) {
-
+        System.out.println();
         SleeveResponse sleeveResponse = sleeveService.saveSleeve(saveSleeveRequest);
 
         return ResponseEntity.created(
@@ -83,10 +85,20 @@ public class SleeveController {
 
     @DeleteMapping("delete/{id}")
     @PreAuthorize("hasRole('admin')")
-    public ResponseEntity<Void> deleteSleeve(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteSleeve(@PathVariable("id") Long id, @RequestBody DeleteSleeveRequest deleteSleeveRequest) {
 
-        sleeveService.deleteSleeve(id);
+        sleeveService.deleteSleeve(id, deleteSleeveRequest);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("archive")
+    public ResponseEntity<Page<SleeveArchiveResponse>> getArchivedSleeves(
+            @PageableDefault(
+                    size = 3
+            ) Pageable pageable
+    ) {
+
+        return ResponseEntity.ok(sleeveService.getAllArchivedSleeves(pageable));
     }
 
 }
