@@ -25,7 +25,7 @@ COPY ruest-team-manager-be/src ./src
 COPY --from=frontend-builder /app/frontend/dist ./src/main/resources/static
 
 # Build fat‑jar
-RUN mvn clean package -DskipTests
+RUN mvn clean package -Dmaven.test.skip=true -DskipTests
 
 # ---- 3) Runtime stage ----
 FROM amazoncorretto:23.0.0-alpine
