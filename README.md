@@ -31,22 +31,22 @@ The goal of this project was to provide a simple but reliable system that:
 - **Frontend:** Vue3 + TypeScript + Vuetify  
 - **Database:** PostgreSQL  
 - **Authentication:** Keycloak (roles for admin/user, OIDC)  
-- **Deployment:** Docker / Podman (`podman-compose`)  
-- **CI/CD:** GitHub Actions (build & test)  
+- **Deployment:** Docker / Podman (`docker compose` `podman-compose`)  
 
 ---
 
 ## Architecture (high-level)
 
 ```plaintext
-[Vue3 Frontend] → [Spring Boot REST API] → [PostgreSQL DB]
-                          │
-                    [Keycloak IAM]
-Frontend communicates with backend through REST endpoints.
+Frontend: Vue3 + TypeScript (UI, search, label generation)
 
-Stateless backend with Spring Boot.
+Backend: Spring Boot REST API (business logic, DB access)
 
-Authentication and authorization handled entirely by Keycloak.
+Database: PostgreSQL (sleeves, warehouses, archive)
+
+Authentication: Keycloak (OIDC, role-based access)
+
+Deployment: Docker/Podman (containerized services)
 
 All services run in containers managed by Docker/Podman.
 Database (MVP)
@@ -73,7 +73,7 @@ Requirements:
 
 Docker or Podman
 
-JDK 17+
+JDK 21+
 
 PostgreSQL 13+
 
