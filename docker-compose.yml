@@ -5,7 +5,7 @@ services:
     environment:
       POSTGRES_USER: username
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: rust_team_manager
+      POSTGRES_DB: ruest_team_manager
       PGDATA: /var/lib/postgresql/data
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -17,20 +17,19 @@ services:
   keycloak:
     container_name: keycloak-rtm
     image: quay.io/keycloak/keycloak:26.2.1
-    command:
-      - start-dev
+    command: ["start-dev", "--import-realm"]
     environment:
       PROXY_ADDRESS_FORWARDING: "true"
       KC_HTTP_RELATIVE_PATH: /auth
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: "9090"
       KC_HOSTNAME_STRICT: "false"
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
       - "9090:8080"
     volumes:
-      - keycloak_data:/opt/keycloak/data
+      - ./keycloak/realm-prod:/opt/keycloak/data/import:Z,ro
     depends_on:
       - postgres
     networks:
@@ -44,7 +43,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/rust_team_manager
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ruest_team_manager
       SPRING_DATASOURCE_USERNAME: username
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://host.docker.internal:9090/auth/realms/ruest-team-manager/protocol/openid-connect/certs

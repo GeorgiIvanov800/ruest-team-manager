@@ -15,5 +15,4 @@ public class RustTeamManagerApplication {
     public static void main(String[] args) {
         SpringApplication.run(RustTeamManagerApplication.class, args);
     }
-
 }

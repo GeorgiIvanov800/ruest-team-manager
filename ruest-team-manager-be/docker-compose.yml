@@ -16,20 +16,19 @@ services:
   keycloak:
     container_name: keycloak-rtm-dev
     image: quay.io/keycloak/keycloak:26.2.1
-    command:
-      - start-dev
+    command: ["start-dev", "--import-realm"]
     environment:
       PROXY_ADDRESS_FORWARDING: "true"
       KC_HTTP_RELATIVE_PATH: /auth
       KC_HOSTNAME: localhost
       KC_HOSTNAME_PORT: "9090"
       KC_HOSTNAME_STRICT: "false"
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
       - "9090:8080"
     volumes:
-      - keycloak_data:/opt/keycloak/data
+      - ../keycloak/realm-dev:/opt/keycloak/data/import:Z,ro
     depends_on:
       - postgres
     networks:
