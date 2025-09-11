@@ -104,6 +104,7 @@ You can run the project in two modes. Choose one and follow the steps.
 - **Dev mode** — only infra (Keycloak + Postgres) from the **be/** compose; backend & frontend run locally.
 
 Keycloak realms are imported **automatically on first start**, depending on which compose file you run.
+Dummy data is also seeded on the first run.
 
 ```
 keycloak/
@@ -148,17 +149,18 @@ docker compose up
 # or Podman
 podman compose up
 ```
-Wait until Keycloak reports are ready (first run may take ~15–30s due to realm import).
+Wait until Keycloak reports are ready and the dummy data is seeded(first run may take ~15–30s due to realm import).
 
 **2) Open App**
 - App: http://localhost:8088
 - Login.
   - Admin login: `username:0000` / `password:0000`
   - User login:  `username:0001` / `password:0000`
+  - Try searching for Sleeve with Satz Nummer 1010 should bring up some data
 
 **3)Keycloak UI**
 - URL: `http://localhost:9090`
-- Admin login: `admin` / `admin`
+- Admin login: `username:admin` / `password:admin`
 
 ---
 ### Option B — Dev Mode (ruest-team-manager-be/ compose, local FE/BE)
@@ -166,16 +168,15 @@ Wait until Keycloak reports are ready (first run may take ~15–30s due to realm
 - Navigate to ruest-team-manager-be/
 ```bash
 # Using compose from there will bring up only Keycloak and PostgreSQL services.
-docker compose up keycloak db
+docker compose up
 # or
-podman-compose up keycloak db
+podman-compose up
 ```
 Wait till Keycloak and PostgreSQL are up and runnning(Keycloak will auto-import the dev realm).
 
 **2) Run Backend (locally)**
 - Create a Spring Boot Run Configuration with profile dev (or set SPRING_PROFILES_ACTIVE=dev).
 - Start the application (RustTeamManagerApplication).
-- Dev profile will point to local Postgres and can seed dummy data.
 
 **3) Run Frontend (locally)**
 ```bash
@@ -187,6 +188,7 @@ npm run dev
 - Frontend (dev): http://localhost:3000
 - Admin login: `username:0000` / `password:0000`
 - User login:  `username:0001` / `password:0000`
+- Try searching for Sleeve with Satz Nummer 1010 should bring up some data
 ---
 
 ## Impact
