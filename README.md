@@ -9,7 +9,7 @@ The goal of this project was to provide a simple but reliable system that:
 - generates labels automatically and consistently,
 - and adds accountability for cleaning and archiving.
 
-**Stack:** Java (Spring Boot), Vue3 + TypeScript, PostgreSQL, Docker/Podman, Keycloak  
+**Stack:** Java (Spring Boot), Vue, PostgreSQL, Docker/Podman, Keycloak  
 **Impact:** Fewer errors, faster preparation, clear traceability.
 
 ---
@@ -27,8 +27,8 @@ The goal of this project was to provide a simple but reliable system that:
 
 ## Tech Stack
 
-- **Backend:** Java, Spring Boot
-- **Frontend:** Vue3 + TypeScript + Vuetify
+- **Backend:** Spring Boot
+- **Frontend:** Vue
 - **Database:** PostgreSQL
 - **Authentication:** Keycloak (roles for admin/user, OIDC)
 - **Deployment:** Docker / Podman
@@ -105,7 +105,7 @@ This schema can be extended later with logs, user actions, or audit trails if ne
 **Requirements:**
 - Docker or Podman
 - JDK 21+
-- PostgreSQL 13+
+- PostgreSQL 17
 
 **Start all services:**
 ```bash
