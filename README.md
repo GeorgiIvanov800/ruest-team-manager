@@ -1,17 +1,13 @@
-# Print Sleeve Management System
+# Rüst Team Manager(RTM) Print Sleeve Management System
 
 This is a web application I developed to digitize the management of printing sleeves in a factory.  
 The old process was based on physical boards and handwritten labels, which caused frequent mistakes, wasted time, and no way to trace who did what.
 
 The goal of this project was to provide a simple but reliable system that:
-- stores all sleeves in a proper database,
-- allows fast searching by print set,
-- generates labels automatically and consistently,
-- and adds accountability for cleaning and archiving.
-
-**Stack:** Java (Spring Boot), Vue, PostgreSQL, Docker/Podman, Keycloak  
-**Impact:** Fewer errors, faster preparation, clear traceability.
-
+- stores all sleeves in a proper database
+- allows fast searching by print set
+- generates labels automatically and consistently
+- and adds accountability for cleaning and archiving
 ---
 
 ## Features
@@ -27,7 +23,7 @@ The goal of this project was to provide a simple but reliable system that:
 
 ## Tech Stack
 
-- **Backend:** Spring Boot
+- **Backend:** Java (Spring Boot)
 - **Frontend:** Vue
 - **Database:** PostgreSQL
 - **Authentication:** Keycloak (roles for admin/user, OIDC)
@@ -100,24 +96,97 @@ This schema can be extended later with logs, user actions, or audit trails if ne
 
 ---
 
-## Deployment
+## Getting Started
 
-**Requirements:**
-- Docker or Podman
-- JDK 21+
-- PostgreSQL 17
+You can run the project in two modes. Choose one and follow the steps.
 
-**Start all services:**
-```bash
-# Podman
-podman-compose up
+- **Prod/Compose mode** — everything runs via the **root** compose file (full app packaged).
+- **Dev mode** — only infra (Keycloak + Postgres) from the **be/** compose; backend & frontend run locally.
 
-# or Docker
-docker compose up
+Keycloak realms are imported **automatically on first start**, depending on which compose file you run.
+
+```
+keycloak/
+  realm-prod/  # auto-imported by ./docker-compose.yml (Prod/Compose mode)
+  realm-dev/   # auto-imported by be/docker-compose.yml (Dev mode)
 ```
 
-This starts the backend, database, and Keycloak in containers.
+> Env variables are already set in the compose files.
+---
+---
 
+### Compose files
+
+| Mode            | Compose file                   | What starts                         | Realm auto-import      |
+|-----------------|--------------------------------|-------------------------------------|------------------------|
+| Prod/Compose    | `./docker-compose.yml`         | Keycloak, Postgres, Backend and FE  | `keycloak/realm-prod/` |
+| Dev local FE/BE | `be/docker-compose.yml`        | Keycloak, Postgres (infra only)     | `keycloak/realm-dev/`  |
+
+---
+
+### Ports (defaults)
+
+| Service       | URL/Port              |
+|---------------|-----------------------|
+| App (FE, prod) | `http://localhost:8088` |
+| Backend API    | `http://localhost:8081` |
+| Keycloak       | `http://localhost:9090` |
+| Frontend (dev) | `http://localhost:3000` |
+| Postgres       | `localhost:5433`        |
+
+> Adjust if your compose maps different ports.
+
+---
+
+### Option A — Prod / Compose Mode (root compose)
+
+**1) Start services (from repo root)**
+```bash
+# Docker
+docker compose up
+
+# or Podman
+podman compose up
+```
+Wait until Keycloak reports are ready (first run may take ~15–30s due to realm import).
+
+**2) Open App**
+- App: http://localhost:8088
+- Login.
+  - Admin login: `username:0000` / `password:0000`
+  - User login:  `username:0001` / `password:0000`
+
+**3)Keycloak UI**
+- URL: `http://localhost:9090`
+- Admin login: `admin` / `admin`
+
+---
+### Option B — Dev Mode (ruest-team-manager-be/ compose, local FE/BE)
+**1) Start services**
+- Navigate to ruest-team-manager-be/
+```bash
+# Using compose from there will bring up only Keycloak and PostgreSQL services.
+docker compose up keycloak db
+# or
+podman-compose up keycloak db
+```
+Wait till Keycloak and PostgreSQL are up and runnning(Keycloak will auto-import the dev realm).
+
+**2) Run Backend (locally)**
+- Create a Spring Boot Run Configuration with profile dev (or set SPRING_PROFILES_ACTIVE=dev).
+- Start the application (RustTeamManagerApplication).
+- Dev profile will point to local Postgres and can seed dummy data.
+
+**3) Run Frontend (locally)**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+**4) Open App**
+- Frontend (dev): http://localhost:3000
+- Admin login: `username:0000` / `password:0000`
+- User login:  `username:0001` / `password:0000`
 ---
 
 ## Impact
