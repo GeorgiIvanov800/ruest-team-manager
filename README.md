@@ -179,8 +179,9 @@ Wait till Keycloak and PostgreSQL are up and runnning(Keycloak will auto-import 
 - Start the application (RustTeamManagerApplication).
 
 **3) Run Frontend (locally)**
+- Navifate to ruest-team-manager-fe/
 ```bash
-cd frontend
+cd ruest-team-manager-fe
 npm install
 npm run dev
 ```
