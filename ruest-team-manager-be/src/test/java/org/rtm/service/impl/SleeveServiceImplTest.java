@@ -1,6 +1,6 @@
 package org.rtm.service.impl;
 
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -41,6 +41,10 @@ public class SleeveServiceImplTest {
     @Spy
     private SleeveMapper sleeveMapper = Mappers.getMapper(SleeveMapper.class);
 
+    @Spy
+    private ObjectMapper objectMapper = new ObjectMapper();
+
+
     @Test
     void test_whenSleeveNumberAlreadyExists_thenThrowDuplicateException() {
         SaveSleeveRequest request = TestDataUtil.createSleeveRequest();
@@ -72,6 +76,8 @@ public class SleeveServiceImplTest {
 
         when(mockSleeveRepository.save(any(Sleeve.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
+
+        SleeveResponse response = serviceToTest.saveSleeve(req);
 
         ArgumentCaptor<Sleeve> captor = ArgumentCaptor.forClass(Sleeve.class);
         verify(mockSleeveRepository).save(captor.capture());
@@ -179,7 +185,7 @@ public class SleeveServiceImplTest {
         assertEquals("red",      updatedSleeve.color());
         assertEquals(13000L,     updatedSleeve.kmStand());
         assertEquals(5,          updatedSleeve.slot());
-
+//        assertSame(warehouse, updatedSleeve.warehouse());
         verify(mockSleeveRepository, times(1)).save(any(Sleeve.class));
     }
 }
