@@ -80,7 +80,6 @@ public class TestDataUtil {
         sleeve.setManufactureDate(request.manufactureDate());
         sleeve.setWidth(request.width());
         sleeve.setKmStand(request.kmStand());
-        sleeve.setStatus(request.status());
         sleeve.setType(request.type());
         sleeve.setCondition(request.condition());
         sleeve.setWarehouse(createWarehouse("L3"));
@@ -127,7 +126,6 @@ public class TestDataUtil {
         sleeve.setType(SleeveType.FLAT);
         sleeve.setCondition(SleeveCondition.NEW);
         sleeve.setWarehouse(createWarehouse("L3"));
-        sleeve.setStatus("ACTIVE");
         sleeve.setKmStand(12000L);
 
         return sleeve;

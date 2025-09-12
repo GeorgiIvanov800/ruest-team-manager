@@ -1,6 +1,5 @@
 package org.rtm.model.dto.response;
 
-import org.rtm.model.entity.Warehouse;
 import org.rtm.model.enums.SleeveCondition;
 import org.rtm.model.enums.SleeveType;
 
@@ -8,7 +7,7 @@ import java.time.LocalDate;
 
 public record SleeveResponse(
         Long id,
-        Integer sequenceNumber,
+        Integer printingSetNumber,
         Integer sleeveNumber,
         String design,
         String color,

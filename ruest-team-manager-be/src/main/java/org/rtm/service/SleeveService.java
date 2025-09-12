@@ -15,7 +15,7 @@ import java.util.Map;
 public interface SleeveService {
     SleeveResponse saveSleeve(SaveSleeveRequest request);
 
-    List<SleeveResponse> getSleevesBySleeveSequenceNumber(Integer sleeveSequenceNumber);
+    List<SleeveResponse> gerSleeveByPrintingSetNumber(Integer printingSetNumber);
 
     SleeveResponse updateSleeve(Long id, Map<String, Object> updateSleeveRequest);
 
@@ -23,7 +23,7 @@ public interface SleeveService {
 
     Page<SleeveResponse> getAllSleevesInWarehouse(Pageable pageable, Long warehouseId);
 
-    SleeveResponse getSleeveBySleeveByNumber(Integer sleeveNumber);
+    SleeveResponse getSleeveBySleeveNumber(Integer sleeveNumber);
 
     Page<SleeveArchiveResponse> getAllArchivedSleeves(Pageable pageable);
 }

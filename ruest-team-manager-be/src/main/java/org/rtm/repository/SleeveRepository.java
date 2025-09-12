@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface SleeveRepository extends JpaRepository<Sleeve, Long> {
 
-    List<Sleeve> findAllBySequenceNumber(int sequenceNumber);
+    List<Sleeve> findAllByPrintingSetNumber(int printingSetNumber);
 
     boolean existsBySleeveNumber(Integer sleeveNumber);
 

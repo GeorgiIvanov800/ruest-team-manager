@@ -1,6 +1,6 @@
 package org.rtm.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
@@ -41,10 +41,6 @@ public class SleeveServiceImplTest {
     @Spy
     private SleeveMapper sleeveMapper = Mappers.getMapper(SleeveMapper.class);
 
-    @Spy
-    private ObjectMapper objectMapper = new ObjectMapper();
-
-
     @Test
     void test_whenSleeveNumberAlreadyExists_thenThrowDuplicateException() {
         SaveSleeveRequest request = TestDataUtil.createSleeveRequest();
@@ -77,8 +73,6 @@ public class SleeveServiceImplTest {
         when(mockSleeveRepository.save(any(Sleeve.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
 
-        SleeveResponse response = serviceToTest.saveSleeve(req);
-
         ArgumentCaptor<Sleeve> captor = ArgumentCaptor.forClass(Sleeve.class);
         verify(mockSleeveRepository).save(captor.capture());
 
@@ -91,23 +85,23 @@ public class SleeveServiceImplTest {
 
     @Test
     void test_whenNoSleevesFound_thenReturnsEmptyList() {
-        int sequenceNumber = 42;
+        int printingSetNumber = 42;
 
-        when(mockSleeveRepository.findAllBySequenceNumber(sequenceNumber))
+        when(mockSleeveRepository.findAllByPrintingSetNumber(printingSetNumber))
                 .thenReturn(Collections.emptyList());
 
         List<SleeveResponse> result = serviceToTest
-                .getSleevesBySleeveSequenceNumber(sequenceNumber);
+                .gerSleeveByPrintingSetNumber(printingSetNumber);
 
         assertNotNull(result);
         assertTrue(result.isEmpty());
-        verify(mockSleeveRepository).findAllBySequenceNumber(sequenceNumber);
+        verify(mockSleeveRepository).findAllByPrintingSetNumber(printingSetNumber);
         verifyNoInteractions(sleeveMapper);
     }
 
     @Test
-    void test_whenSequenceNumberExists_thenReturnsSleeveResponse() {
-        int sequenceNumber = 42;
+    void test_whenPrintingSetNumberExists_thenReturnsSleeveResponse() {
+        int printingSetNumber = 42;
         SaveSleeveRequest sleeveRequest= TestDataUtil.createSleeveRequest();
 
         Sleeve s1 = TestDataUtil.createSleeveFromRequest(1L, sleeveRequest);
@@ -115,23 +109,23 @@ public class SleeveServiceImplTest {
         Sleeve s2 = TestDataUtil.createSleeveFromRequest(2L, sleeveRequest);
         s2.setId(2L);
 
-        when(mockSleeveRepository.findAllBySequenceNumber(sequenceNumber))
+        when(mockSleeveRepository.findAllByPrintingSetNumber(printingSetNumber))
                 .thenReturn(List.of(s1, s2));
 
-        List<SleeveResponse> result = serviceToTest.getSleevesBySleeveSequenceNumber(sequenceNumber);
+        List<SleeveResponse> result = serviceToTest.gerSleeveByPrintingSetNumber(printingSetNumber);
 
         assertNotNull(result);
         assertEquals(2, result.size());
 
         SleeveResponse r1 = result.getFirst();
         assertEquals(s1.getId(), r1.id());
-        assertEquals(s1.getPrintingSetNumber(), r1.sequenceNumber());
+        assertEquals(s1.getPrintingSetNumber(), r1.printingSetNumber());
 
         SleeveResponse r2 = result.getLast();
         assertEquals(s2.getId(), r2.id());
-        assertEquals(s2.getPrintingSetNumber(), r2.sequenceNumber());
+        assertEquals(s2.getPrintingSetNumber(), r2.printingSetNumber());
 
-        verify(mockSleeveRepository).findAllBySequenceNumber(sequenceNumber);
+        verify(mockSleeveRepository).findAllByPrintingSetNumber(printingSetNumber);
 
         verify(sleeveMapper, times(2)).toResponse(any(Sleeve.class));
     }
@@ -185,7 +179,7 @@ public class SleeveServiceImplTest {
         assertEquals("red",      updatedSleeve.color());
         assertEquals(13000L,     updatedSleeve.kmStand());
         assertEquals(5,          updatedSleeve.slot());
-//        assertSame(warehouse, updatedSleeve.warehouse());
+
         verify(mockSleeveRepository, times(1)).save(any(Sleeve.class));
     }
 }

@@ -60,9 +60,9 @@ public class SleeveServiceImpl implements SleeveService {
     }
 
     @Override
-    public List<SleeveResponse> getSleevesBySleeveSequenceNumber(Integer sleeveSequenceNumber) {
+    public List<SleeveResponse> gerSleeveByPrintingSetNumber(Integer printingSetNumber) {
 
-        List<Sleeve> sleeves = sleeveRepository.findAllBySequenceNumber(sleeveSequenceNumber);
+        List<Sleeve> sleeves = sleeveRepository.findAllByPrintingSetNumber(printingSetNumber);
 
         return sleeves.stream()
                 .map(sleeveMapper::toResponse)
@@ -125,7 +125,7 @@ public class SleeveServiceImpl implements SleeveService {
     }
 
     @Override
-    public SleeveResponse getSleeveBySleeveByNumber(Integer sleeveNumber) {
+    public SleeveResponse getSleeveBySleeveNumber(Integer sleeveNumber) {
         Sleeve sleeve = sleeveRepository
                 .findBySleeveNumber(sleeveNumber)
                 .orElseThrow(() ->

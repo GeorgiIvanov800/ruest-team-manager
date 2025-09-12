@@ -21,7 +21,7 @@ public class SleeveArchive extends BaseEntity {
     private Long originalId;
 
     @Column(nullable = false)
-    private Integer sequenceNumber;
+    private Integer printingSetNumber;
 
     @Column(nullable = false)
     private Integer sleeveNumber;
