@@ -69,7 +69,7 @@ public class TestDataUtil {
         Sleeve sleeve = new Sleeve();
         sleeve.setId(id);
         sleeve.setSleeveNumber(request.sleeveNumber());
-        sleeve.setSequenceNumber(request.sequenceNumber());
+        sleeve.setPrintingSetNumber(request.sequenceNumber());
         sleeve.setDesign(request.design());
         sleeve.setColor(request.color());
         sleeve.setManufacturer(request.manufacturer());
@@ -114,7 +114,7 @@ public class TestDataUtil {
         Sleeve sleeve = new Sleeve();
         sleeve.setId(1L);
         sleeve.setSleeveNumber(145369);
-        sleeve.setSequenceNumber(100);
+        sleeve.setPrintingSetNumber(100);
         sleeve.setDesign("SpiralDesign");
         sleeve.setColor("Blau");
         sleeve.setManufacturer("Manschetten GmbH");

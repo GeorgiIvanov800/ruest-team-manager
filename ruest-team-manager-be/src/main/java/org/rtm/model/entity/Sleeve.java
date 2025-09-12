@@ -20,7 +20,7 @@ import java.time.LocalDate;
 public class Sleeve extends BaseEntity {
 
     @Column(nullable = false)
-    private Integer sequenceNumber; // Reference number (Satznummer)
+    private Integer printingSetNumber;
 
     @Column(nullable = false, unique = true)
     private Integer sleeveNumber;
@@ -29,7 +29,7 @@ public class Sleeve extends BaseEntity {
     private String design;
 
     @Column(nullable = false)
-    private String color; //Maybe make this ENUM when I have all the colors
+    private String color; //Make this field ENUM when all the colors that are needed are present
 
     @Column(nullable = false)
     private String manufacturer;

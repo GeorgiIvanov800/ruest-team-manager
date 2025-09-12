@@ -125,11 +125,11 @@ public class SleeveServiceImplTest {
 
         SleeveResponse r1 = result.getFirst();
         assertEquals(s1.getId(), r1.id());
-        assertEquals(s1.getSequenceNumber(), r1.sequenceNumber());
+        assertEquals(s1.getPrintingSetNumber(), r1.sequenceNumber());
 
         SleeveResponse r2 = result.getLast();
         assertEquals(s2.getId(), r2.id());
-        assertEquals(s2.getSequenceNumber(), r2.sequenceNumber());
+        assertEquals(s2.getPrintingSetNumber(), r2.sequenceNumber());
 
         verify(mockSleeveRepository).findAllBySequenceNumber(sequenceNumber);
 
