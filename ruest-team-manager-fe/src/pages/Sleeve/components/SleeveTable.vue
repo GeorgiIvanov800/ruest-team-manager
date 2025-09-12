@@ -42,7 +42,7 @@
 
   const headers = computed(() => {
     const baseHeaders: DataTableHeader[] = [
-      { title: 'Satz Nummer', key: 'sequenceNumber', align: 'start', sortable: false },
+      { title: 'Satz Nummer', key: 'printingSetNumber', align: 'start', sortable: false },
       { title: 'Type', key: 'type', align: 'start', sortable: false },
       { title: 'Motiv', key: 'design', align: 'start', sortable: false },
       { title: 'Farbe', key: 'color', align: 'start', sortable: false },

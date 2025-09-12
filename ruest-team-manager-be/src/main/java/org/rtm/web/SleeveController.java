@@ -42,9 +42,9 @@ public class SleeveController {
 
     @GetMapping("")
     public ResponseEntity<List<SleeveResponse>> getSleeveByPrintingSetNumber(
-            @RequestParam("sequence") Integer sequenceNumber
+            @RequestParam("printingSetNumber") Integer printingSetNumber
     ) {
-        List<SleeveResponse> result = sleeveService.gerSleeveByPrintingSetNumber(sequenceNumber);
+        List<SleeveResponse> result = sleeveService.gerSleeveByPrintingSetNumber(printingSetNumber);
 
         if (result.isEmpty()) {
             return ResponseEntity.noContent().build();

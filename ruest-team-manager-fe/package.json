@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix",
-    "api:gen": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8088/api/v1/v3/api-docs -o src/openapi --skip-validate-spec",
+    "api:gen": "openapi-generator-cli generate -g typescript-axios -i http://localhost:8088/v3/api-docs -o src/openapi --skip-validate-spec",
     "api:clean": "rimraf src/openapi",
     "api:regen": "npm run api:clean && npm run api:gen"
   },

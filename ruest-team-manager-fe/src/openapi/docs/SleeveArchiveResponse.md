@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **number** |  | [optional] [default to undefined]
-**sequenceNumber** | **number** |  | [optional] [default to undefined]
+**printingSetNumber** | **number** |  | [optional] [default to undefined]
 **sleeveNumber** | **number** |  | [optional] [default to undefined]
 **design** | **string** |  | [optional] [default to undefined]
 **color** | **string** |  | [optional] [default to undefined]
@@ -27,7 +27,7 @@ import { SleeveArchiveResponse } from './api';
 
 const instance: SleeveArchiveResponse = {
     id,
-    sequenceNumber,
+    printingSetNumber,
     sleeveNumber,
     design,
     color,

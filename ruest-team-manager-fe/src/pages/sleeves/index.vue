@@ -4,14 +4,14 @@
   import type { SleeveResponse } from '@/openapi'
   import { isAxiosError } from 'axios'
   import { IsAdminKey } from '@/plugins'
-  import { deleteSleeve, getAllSleevesBySequenceNumber } from '@/services/sleeveService'
+  import { deleteSleeve, getAllSleevesByPrintingSetNumber } from '@/services/sleeveService'
   import { useDialogStore } from '@/stores/dialogStore'
   import { useLoadingStore } from '@/stores/loadingStore'
   import SleeveTable from '../Sleeve/components/SleeveTable.vue';
 
   const route = useRoute();
   const router = useRouter();
-  const searchValue = ref<number>(Number(route.query.sleeveSequence) || 0);
+  const searchValue = ref<number>(Number(route.query.sleevePrintingSetNumber) || 0);
   const isLoading = useLoadingStore();
   const sleeveData = ref<SleeveResponse[]>([]);
   const error = ref<string | null>(null);
@@ -22,7 +22,7 @@
     isLoading.startLoading();
     error.value = null;
     try {
-      sleeveData.value = await getAllSleevesBySequenceNumber(searchValue.value)
+      sleeveData.value = await getAllSleevesByPrintingSetNumber(searchValue.value)
       if (sleeveData.value.length === 0) {
         return sleeveData.value = [];
       }
@@ -37,7 +37,7 @@
 
   function onSearch (newValue: number) {
     searchValue.value = newValue;
-    router.push({ query: { ...route.query, sleeveSequence: newValue } });
+    router.push({ query: { ...route.query, printingSetNumber: newValue } });
   }
 
   function onRedirect (): void {
@@ -82,10 +82,10 @@
 
   onMounted(fetchSleeves);
 
-  watch(() => route.query.sleeveSequence,
+  watch(() => route.query.printingSetNumber,
 
-        (newSeq, _oldSeq) => {
-          const seqNumber = Number(newSeq)
+        (printingSetNumber, _oldPrintingSetNumber) => {
+          const seqNumber = Number(printingSetNumber)
           if (Number.isNaN(seqNumber)) {
             return;
           }

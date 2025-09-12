@@ -4,7 +4,7 @@ INSERT INTO warehouses (id, name) VALUES
                                       (3, 'G');
 
 INSERT INTO sleeves (
-    sequence_number, sleeve_number, design, color, manufacturer, notes, gear, circumference, slot,
+    printing_set_number, sleeve_number, design, color, manufacturer, notes, gear, circumference, slot,
     manufacture_date, width, km_stand, warehouse_id, "type", "condition"
 ) VALUES
       (5011, 4000, 'Delta', 'Red', 'Soylent', 'Surface wear', 6, 217, 2, '2025-01-21', 41, 712, 1,'NON_FLAT', 'USED'),
@@ -59,7 +59,7 @@ INSERT INTO sleeves (
       (3001, 4049, 'Gamma', 'Brown', 'Wayne Enterprises', 'Minor scratches', 10, 223, 1, '2023-06-17', 54, 3105, 2,'FLAT', 'NEW');
 
 INSERT INTO sleeves (
-    sequence_number, sleeve_number, design, color, manufacturer, notes, gear, circumference, slot,
+    printing_set_number, sleeve_number, design, color, manufacturer, notes, gear, circumference, slot,
     manufacture_date, width, km_stand, warehouse_id, "type", "condition"
 ) VALUES
       (2011, 3000, 'Delta', 'Red', 'Soylent', 'Surface wear', 6, 217, 2, '2025-01-21', 41, 712, 1,'NON_FLAT', 'USED'),

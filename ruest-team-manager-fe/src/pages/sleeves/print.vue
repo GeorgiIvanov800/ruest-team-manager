@@ -103,7 +103,7 @@
             </div>
           </div>
 
-          <div class="sleeve-number">{{ sleeve?.sequenceNumber }}</div>
+          <div class="sleeve-number">{{ sleeve?.printingSetNumber }}</div>
         </div>
 
         <div class="grid-box">

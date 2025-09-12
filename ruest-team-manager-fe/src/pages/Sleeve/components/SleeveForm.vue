@@ -26,7 +26,7 @@
     }
 
     const initialValuesForForm: SaveSleeveRequest = {
-      sequenceNumber: props.initialData.sequenceNumber ?? 0,
+      printingSetNumber: props.initialData.printingSetNumber ?? 0,
       sleeveNumber: props.initialData.sleeveNumber ?? 0,
       design: props.initialData.design ?? '',
       color: props.initialData.color ?? '',
@@ -62,8 +62,8 @@
     initialValues: formInitialValues.value,
   });
 
-  const { value: sequenceNumber, errorMessage: sequenceNumberError }
-    = useField<number>('sequenceNumber');
+  const { value: printingSetNumber, errorMessage: printingSetNumberError }
+    = useField<number>('printingSetNumber');
   const { value: sleeveNumber, errorMessage: sleeveNumberError } = useField<number>('sleeveNumber');
   const { value: design, errorMessage: designError } = useField<string>('design');
   const { value: color, errorMessage: colorError } = useField<string>('color');
@@ -137,9 +137,9 @@
               <v-row dense>
                 <v-col cols="12" sm="6">
                   <v-number-input
-                    v-model="sequenceNumber"
+                    v-model="printingSetNumber"
                     dense
-                    :error-messages="sequenceNumberError"
+                    :error-messages="printingSetNumberError"
                     label="Satz Nummer"
                     outlined
                   />

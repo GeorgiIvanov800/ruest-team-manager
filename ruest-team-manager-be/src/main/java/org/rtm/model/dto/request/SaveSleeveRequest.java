@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 public record SaveSleeveRequest(
         @NotNull(message = "{sleeve.sequenceNumber.required}") //Satznummer
-        Integer sequenceNumber,
+        Integer printingSetNumber,
 
         @NotNull(message = "{sleeve.sleeveNumber.required}")
         Integer sleeveNumber,

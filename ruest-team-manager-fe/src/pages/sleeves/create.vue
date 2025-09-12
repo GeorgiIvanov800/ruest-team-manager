@@ -20,6 +20,7 @@
   const dialogStore = useDialogStore()
 
   async function onSave (payload: SaveSleeveRequest): Promise<void> {
+    console.log(payload);
     try {
       await saveSleeve(payload)
       dialogStore.openAlert({ title: 'Erfolgreich!', message: 'Sleeve erfolgreich angelegt - weiter geht’s!', color: 'success', onConfirm: () => {

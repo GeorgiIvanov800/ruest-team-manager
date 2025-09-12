@@ -12,8 +12,8 @@ const configuration = new Configuration({
 })
 const api = new SleeveControllerApi(configuration);
 
-export async function getAllSleevesBySequenceNumber (seq: number): Promise<SleeveResponse[]> {
-  const response = await api.getSleeveSequenceNumber(seq);
+export async function getAllSleevesByPrintingSetNumber (printingSetNumber: number): Promise<SleeveResponse[]> {
+  const response = await api.getSleeveByPrintingSetNumber(printingSetNumber);
   return response.data;
 }
 

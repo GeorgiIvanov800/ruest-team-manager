@@ -27,7 +27,7 @@ async function onSearch(): Promise<void> {
   if (result?.valid) {
     router.push({
       path: "/sleeves",
-      query: { sleeveSequence: searchValue.value },
+      query: { sleevePrintingSetNumber: searchValue.value },
     });
   } else {
     return;

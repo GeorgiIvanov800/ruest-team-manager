@@ -12,7 +12,7 @@ const nonEmpty = z.string({ message: 'Dieses Feld ist erforderlich.' }).min(1);
 export const validationSchema = toTypedSchema(
   z
     .object({
-      sequenceNumber: nonNegNumber,
+      printingSetNumber: nonNegNumber,
       sleeveNumber: nonNegNumber,
       design: nonEmpty,
       color: nonEmpty,

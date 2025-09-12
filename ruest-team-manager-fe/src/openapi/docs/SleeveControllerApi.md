@@ -1,16 +1,16 @@
 # SleeveControllerApi
 
-All URIs are relative to *http://localhost:8088/api/v1*
+All URIs are relative to *http://localhost:8088*
 
 |Method | HTTP request | Description|
 |------------- | ------------- | -------------|
-|[**deleteSleeve**](#deletesleeve) | **DELETE** /sleeves/delete/{id} | |
-|[**getAllSleevesInWarehouse**](#getallsleevesinwarehouse) | **GET** /sleeves/warehouse/{warehouseId} | |
-|[**getArchivedSleeves**](#getarchivedsleeves) | **GET** /sleeves/archive | |
-|[**getSleeveNumber**](#getsleevenumber) | **GET** /sleeves/{sleeveNumber} | |
-|[**getSleeveSequenceNumber**](#getsleevesequencenumber) | **GET** /sleeves | |
-|[**saveSleeve**](#savesleeve) | **POST** /sleeves/save | |
-|[**updateSleeve**](#updatesleeve) | **PATCH** /sleeves/update/{id} | |
+|[**deleteSleeve**](#deletesleeve) | **DELETE** /api/v1/sleeves/delete/{id} | |
+|[**getAllSleevesInWarehouse**](#getallsleevesinwarehouse) | **GET** /api/v1/sleeves/warehouse/{warehouseId} | |
+|[**getArchivedSleeves**](#getarchivedsleeves) | **GET** /api/v1/sleeves/archive | |
+|[**getSleeveByPrintingSetNumber**](#getsleevebyprintingsetnumber) | **GET** /api/v1/sleeves | |
+|[**getSleeveNumber**](#getsleevenumber) | **GET** /api/v1/sleeves/{sleeveNumber} | |
+|[**saveSleeve**](#savesleeve) | **POST** /api/v1/sleeves/save | |
+|[**updateSleeve**](#updatesleeve) | **PATCH** /api/v1/sleeves/update/{id} | |
 
 # **deleteSleeve**
 > deleteSleeve(deleteSleeveRequest)
@@ -171,6 +171,56 @@ const { status, data } = await apiInstance.getArchivedSleeves(
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **getSleeveByPrintingSetNumber**
+> Array<SleeveResponse> getSleeveByPrintingSetNumber()
+
+
+### Example
+
+```typescript
+import {
+    SleeveControllerApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new SleeveControllerApi(configuration);
+
+let printingSetNumber: number; // (default to undefined)
+
+const { status, data } = await apiInstance.getSleeveByPrintingSetNumber(
+    printingSetNumber
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **printingSetNumber** | [**number**] |  | defaults to undefined|
+
+
+### Return type
+
+**Array<SleeveResponse>**
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **getSleeveNumber**
 > SleeveResponse getSleeveNumber()
 
@@ -203,56 +253,6 @@ const { status, data } = await apiInstance.getSleeveNumber(
 ### Return type
 
 **SleeveResponse**
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-|**200** | OK |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getSleeveSequenceNumber**
-> Array<SleeveResponse> getSleeveSequenceNumber()
-
-
-### Example
-
-```typescript
-import {
-    SleeveControllerApi,
-    Configuration
-} from './api';
-
-const configuration = new Configuration();
-const apiInstance = new SleeveControllerApi(configuration);
-
-let sequence: number; // (default to undefined)
-
-const { status, data } = await apiInstance.getSleeveSequenceNumber(
-    sequence
-);
-```
-
-### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **sequence** | [**number**] |  | defaults to undefined|
-
-
-### Return type
-
-**Array<SleeveResponse>**
 
 ### Authorization
 

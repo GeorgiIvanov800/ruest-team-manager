@@ -141,7 +141,7 @@ export interface SaveSleeveRequest {
      * @type {number}
      * @memberof SaveSleeveRequest
      */
-    'sequenceNumber': number;
+    'printingSetNumber': number;
     /**
      * 
      * @type {number}
@@ -266,7 +266,7 @@ export interface SleeveArchiveResponse {
      * @type {number}
      * @memberof SleeveArchiveResponse
      */
-    'sequenceNumber'?: number;
+    'printingSetNumber'?: number;
     /**
      * 
      * @type {number}
@@ -366,7 +366,7 @@ export interface SleeveResponse {
      * @type {number}
      * @memberof SleeveResponse
      */
-    'sequenceNumber'?: number;
+    'printingSetNumber'?: number;
     /**
      * 
      * @type {number}
@@ -521,7 +521,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
             assertParamExists('deleteSleeve', 'id', id)
             // verify required parameter 'deleteSleeveRequest' is not null or undefined
             assertParamExists('deleteSleeve', 'deleteSleeveRequest', deleteSleeveRequest)
-            const localVarPath = `/sleeves/delete/{id}`
+            const localVarPath = `/api/v1/sleeves/delete/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -564,7 +564,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
             assertParamExists('getAllSleevesInWarehouse', 'pageable', pageable)
             // verify required parameter 'warehouseId' is not null or undefined
             assertParamExists('getAllSleevesInWarehouse', 'warehouseId', warehouseId)
-            const localVarPath = `/sleeves/warehouse/{warehouseId}`
+            const localVarPath = `/api/v1/sleeves/warehouse/{warehouseId}`
                 .replace(`{${"warehouseId"}}`, encodeURIComponent(String(warehouseId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -607,7 +607,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
         getArchivedSleeves: async (pageable: Pageable, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'pageable' is not null or undefined
             assertParamExists('getArchivedSleeves', 'pageable', pageable)
-            const localVarPath = `/sleeves/archive`;
+            const localVarPath = `/api/v1/sleeves/archive`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -642,6 +642,46 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * 
+         * @param {number} printingSetNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveByPrintingSetNumber: async (printingSetNumber: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'printingSetNumber' is not null or undefined
+            assertParamExists('getSleeveByPrintingSetNumber', 'printingSetNumber', printingSetNumber)
+            const localVarPath = `/api/v1/sleeves`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+            if (printingSetNumber !== undefined) {
+                localVarQueryParameter['printingSetNumber'] = printingSetNumber;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @param {number} sleeveNumber 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -649,7 +689,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
         getSleeveNumber: async (sleeveNumber: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'sleeveNumber' is not null or undefined
             assertParamExists('getSleeveNumber', 'sleeveNumber', sleeveNumber)
-            const localVarPath = `/sleeves/{sleeveNumber}`
+            const localVarPath = `/api/v1/sleeves/{sleeveNumber}`
                 .replace(`{${"sleeveNumber"}}`, encodeURIComponent(String(sleeveNumber)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -679,46 +719,6 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
         },
         /**
          * 
-         * @param {number} sequence 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSleeveSequenceNumber: async (sequence: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'sequence' is not null or undefined
-            assertParamExists('getSleeveSequenceNumber', 'sequence', sequence)
-            const localVarPath = `/sleeves`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication bearerAuth required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-            if (sequence !== undefined) {
-                localVarQueryParameter['sequence'] = sequence;
-            }
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {SaveSleeveRequest} saveSleeveRequest 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -726,7 +726,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
         saveSleeve: async (saveSleeveRequest: SaveSleeveRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'saveSleeveRequest' is not null or undefined
             assertParamExists('saveSleeve', 'saveSleeveRequest', saveSleeveRequest)
-            const localVarPath = `/sleeves/save`;
+            const localVarPath = `/api/v1/sleeves/save`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -768,7 +768,7 @@ export const SleeveControllerApiAxiosParamCreator = function (configuration?: Co
             assertParamExists('updateSleeve', 'id', id)
             // verify required parameter 'requestBody' is not null or undefined
             assertParamExists('updateSleeve', 'requestBody', requestBody)
-            const localVarPath = `/sleeves/update/{id}`
+            const localVarPath = `/api/v1/sleeves/update/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -849,6 +849,18 @@ export const SleeveControllerApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {number} printingSetNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSleeveByPrintingSetNumber(printingSetNumber: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SleeveResponse>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSleeveByPrintingSetNumber(printingSetNumber, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getSleeveByPrintingSetNumber']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {number} sleeveNumber 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -857,18 +869,6 @@ export const SleeveControllerApiFp = function(configuration?: Configuration) {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSleeveNumber(sleeveNumber, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getSleeveNumber']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
-        /**
-         * 
-         * @param {number} sequence 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<SleeveResponse>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSleeveSequenceNumber(sequence, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SleeveControllerApi.getSleeveSequenceNumber']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -937,21 +937,21 @@ export const SleeveControllerApiFactory = function (configuration?: Configuratio
         },
         /**
          * 
+         * @param {number} printingSetNumber 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSleeveByPrintingSetNumber(printingSetNumber: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<SleeveResponse>> {
+            return localVarFp.getSleeveByPrintingSetNumber(printingSetNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @param {number} sleeveNumber 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
         getSleeveNumber(sleeveNumber: number, options?: RawAxiosRequestConfig): AxiosPromise<SleeveResponse> {
             return localVarFp.getSleeveNumber(sleeveNumber, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * 
-         * @param {number} sequence 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig): AxiosPromise<Array<SleeveResponse>> {
-            return localVarFp.getSleeveSequenceNumber(sequence, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1019,6 +1019,17 @@ export class SleeveControllerApi extends BaseAPI {
 
     /**
      * 
+     * @param {number} printingSetNumber 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SleeveControllerApi
+     */
+    public getSleeveByPrintingSetNumber(printingSetNumber: number, options?: RawAxiosRequestConfig) {
+        return SleeveControllerApiFp(this.configuration).getSleeveByPrintingSetNumber(printingSetNumber, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @param {number} sleeveNumber 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1026,17 +1037,6 @@ export class SleeveControllerApi extends BaseAPI {
      */
     public getSleeveNumber(sleeveNumber: number, options?: RawAxiosRequestConfig) {
         return SleeveControllerApiFp(this.configuration).getSleeveNumber(sleeveNumber, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * 
-     * @param {number} sequence 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SleeveControllerApi
-     */
-    public getSleeveSequenceNumber(sequence: number, options?: RawAxiosRequestConfig) {
-        return SleeveControllerApiFp(this.configuration).getSleeveSequenceNumber(sequence, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

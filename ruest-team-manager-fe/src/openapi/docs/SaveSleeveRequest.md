@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sequenceNumber** | **number** |  | [default to undefined]
+**printingSetNumber** | **number** |  | [default to undefined]
 **sleeveNumber** | **number** |  | [default to undefined]
 **design** | **string** |  | [default to undefined]
 **color** | **string** |  | [default to undefined]
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 import { SaveSleeveRequest } from './api';
 
 const instance: SaveSleeveRequest = {
-    sequenceNumber,
+    printingSetNumber,
     sleeveNumber,
     design,
     color,

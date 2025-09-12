@@ -54,7 +54,7 @@ async function fetchArchivedSleeves() {
 }
 
 const headers = [
-  { title: "Satz Nummer", key: "sequenceNumber", sortable: false },
+  { title: "Satz Nummer", key: "printingSetNumber", sortable: false },
   { title: "Sleeve Nummer", key: "sleeveNumber",sortable: false  },
   { title: "Motiv", key: "design", sortable: false  },
   { title: "Farbe", key: "color", sortable: false  },
