@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public record SleeveArchiveResponse(
         Long id,
-        Integer sequenceNumber,
+        Integer printingSetNumber,
         Integer sleeveNumber,
         String design,
         String color,

@@ -41,10 +41,10 @@ public class SleeveController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<SleeveResponse>> getSleeveSequenceNumber(
+    public ResponseEntity<List<SleeveResponse>> getSleeveByPrintingSetNumber(
             @RequestParam("sequence") Integer sequenceNumber
     ) {
-        List<SleeveResponse> result = sleeveService.getSleevesBySleeveSequenceNumber(sequenceNumber);
+        List<SleeveResponse> result = sleeveService.gerSleeveByPrintingSetNumber(sequenceNumber);
 
         if (result.isEmpty()) {
             return ResponseEntity.noContent().build();
@@ -57,7 +57,7 @@ public class SleeveController {
     public ResponseEntity<SleeveResponse> getSleeveNumber(
             @PathVariable Integer sleeveNumber
     ) {
-        SleeveResponse response = sleeveService.getSleeveBySleeveByNumber(sleeveNumber);
+        SleeveResponse response = sleeveService.getSleeveBySleeveNumber(sleeveNumber);
 
         return ResponseEntity.ok(response);
     }
