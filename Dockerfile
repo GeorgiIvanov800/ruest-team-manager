@@ -24,8 +24,8 @@ COPY ruest-team-manager-be/src ./src
 # Embed built frontend into backend static resources
 COPY --from=frontend-builder /app/frontend/dist ./src/main/resources/static
 
-# Build fat‑jar
-RUN mvn clean package -Dmaven.test.skip=true -DskipTests
+# Build jar
+RUN mvn -B clean package
 
 # ---- 3) Runtime stage ----
 FROM amazoncorretto:23.0.0-alpine

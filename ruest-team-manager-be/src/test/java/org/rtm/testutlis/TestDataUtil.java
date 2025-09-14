@@ -69,7 +69,7 @@ public class TestDataUtil {
         Sleeve sleeve = new Sleeve();
         sleeve.setId(id);
         sleeve.setSleeveNumber(request.sleeveNumber());
-        sleeve.setPrintingSetNumber(request.sequenceNumber());
+        sleeve.setPrintingSetNumber(request.printingSetNumber());
         sleeve.setDesign(request.design());
         sleeve.setColor(request.color());
         sleeve.setManufacturer(request.manufacturer());
@@ -91,7 +91,7 @@ public class TestDataUtil {
         return new SleeveResponse(
                 id,
                 req.sleeveNumber(),
-                req.sequenceNumber(),
+                req.printingSetNumber(),
                 req.design(),
                 req.color(),
                 req.manufacturer(),
