@@ -32,6 +32,8 @@ The goal of this project was to provide a simple but reliable system that:
 ---
 
 ## Architecture
+**Frontend delivery (prod):** the SPA is built and bundled into Spring Boot’s `classpath:/static`, so the backend **serves both the API and the static UI**. There is **no separate frontend server**. In dev mode, the SPA runs on the Vite dev server (`http://localhost:3000`) and talks to the API.
+
 
 ```mermaid
 flowchart LR
@@ -149,7 +151,8 @@ docker compose up
 # or Podman
 podman compose up
 ```
-Wait until Keycloak reports are ready and the dummy data is seeded(first run may take ~15–30s due to realm import).
+Wait until Keycloak is ready and the realm import completes (first run may take ~15–30s).
+**Note:** On the very first run, Docker/Podman will also build the backend image. Maven will download dependencies and package the app **inside the build container**, and the frontend will be **built and copied into `classpath:/static`**. This can take a few minutes; subsequent starts are much faster.
 
 **2) Open App**
 - App: http://localhost:8088
@@ -179,7 +182,7 @@ Wait till Keycloak and PostgreSQL are up and runnning(Keycloak will auto-import 
 - Start the application (RustTeamManagerApplication).
 
 **3) Run Frontend (locally)**
-- Navifate to ruest-team-manager-fe/
+- Navigate to ruest-team-manager-fe/
 ```bash
 cd ruest-team-manager-fe
 npm install
