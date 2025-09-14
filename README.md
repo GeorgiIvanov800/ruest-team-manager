@@ -66,12 +66,12 @@ erDiagram
     WAREHOUSE ||--o{ SLEEVE : contains
 
     WAREHOUSE {
-        int id PK
+        long id PK
         string location
     }
 
     SLEEVE {
-        int id PK
+        long id PK
         int diameter
         string design
         date production_date
@@ -79,7 +79,7 @@ erDiagram
     }
 
     ARCHIVE {
-        int id PK
+        long id PK
         string reason
         date deleted_at
     }
