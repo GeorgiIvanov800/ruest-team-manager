@@ -1,13 +1,20 @@
 # Rüst Team Manager(RTM) Print Sleeve Management System
+ — Digitizing sleeve management on the shopfloor
 
 This is a web application I developed to digitize the management of printing sleeves in a factory.  
 The old process was based on physical boards and handwritten labels, which caused frequent mistakes, wasted time, and no way to trace who did what.
 
-The goal of this project was to provide a simple but reliable system that:
-- stores all sleeves in a proper database
-- allows fast searching by print set
-- generates labels automatically and consistently
-- and adds accountability for cleaning and archiving
+Goal: Replace the manual process with a simple, reliable, on-prem system.
+
+## Solution (after)
+
+- Store all sleeves & print sets in a normalized database (PostgreSQL).
+- Fast search by print set and sleeve attributes.
+-Automatic, consistent A5 labels (no handwriting).
+-Accountability: audit trail for cleaning & archiving; “who/when/what”.
+-Access control: OAuth2/OIDC with Keycloak (JWT, RBAC).
+
+On-prem deployment via Docker/Podman & Docker Compose.
 ---
 
 ## Features
