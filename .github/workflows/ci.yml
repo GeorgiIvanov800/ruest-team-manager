@@ -25,3 +25,23 @@ jobs:
       - name: Maven verify (unit tests)
         working-directory: ruest-team-manager-be
         run: mvn -B -DskipTests=false verify
+
+  frontend:
+    name: Frontend - install + build (Vue 3)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Use Node 20 with npm cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: ruest-team-manager-fe/package-lock.json
+      - name: Install deps
+        working-directory: ruest-team-manager-fe
+        run: npm ci
+      - name: Build
+        working-directory: ruest-team-manager-fe
+        run: npm run build
