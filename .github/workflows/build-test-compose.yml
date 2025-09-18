@@ -63,7 +63,7 @@ jobs:
           docker compose version
 
       - name: Compose build
-        run: docker compose -f docker-compose.yml build --progress=plain
+        run: docker compose --progress plain -f docker-compose.yml build
 
   release-images:
     name: Build & Push Docker image to GHCR (tags only)

@@ -37,7 +37,7 @@ services:
 
   app:
     container_name: rtm-app
-    image: ghcr.io/<GeorgiIvanov800>/ruest-team-manager-app:${TAG:-latest}
+    image: ghcr.io/georgiivanov800/ruest-team-manager-app:${TAG:-latest}
     build:
       context: .
       dockerfile: Dockerfile
