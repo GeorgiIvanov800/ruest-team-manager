@@ -90,7 +90,8 @@ jobs:
 
       - name: Build & push app image
         run: |
-          IMAGE=ghcr.io/${{ github.repository_owner }}/ruest-team-manager-app
+          OWNER=${GITHUB_REPOSITORY_OWNER,,}
+          IMAGE=ghcr.io/$OWNER/ruest-team-manager-app
           TAG_NAME=${GITHUB_REF_NAME}
           docker buildx build \
                       --platform linux/amd64 \
